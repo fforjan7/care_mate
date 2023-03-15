@@ -1,20 +1,26 @@
+import 'package:care_mate/ui/login/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
   @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    return MaterialApp(
+      title: 'Flutter Bottom Navigation Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      home: const LoginPage(),
     );
   }
 }
