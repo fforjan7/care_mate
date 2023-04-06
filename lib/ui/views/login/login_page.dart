@@ -1,8 +1,8 @@
-import 'package:care_mate/ui/login/widgets/custom_text_form_field.dart';
+import 'package:care_mate/ui/views/login/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LoginView extends StatelessWidget {
+  const LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +13,21 @@ class LoginPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(
-          children: const [
-            Padding(
+          children: [
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 8.0),
+              child: CustomTextFormField(),
+            ),
+            const Padding(
               padding: EdgeInsets.symmetric(vertical: 8.0),
               child: CustomTextFormField(),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.0),
-              child: CustomTextFormField(),
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: ElevatedButton(
+                onPressed: () {},
+                child: const Text("Button"),
+              ),
             ),
           ],
         ),

@@ -1,9 +1,9 @@
-import 'package:care_mate/ui/discovery/discovery_page.dart';
-import 'package:care_mate/ui/home/widgets/custom_grid_element.dart';
+import 'package:care_mate/ui/views/discovery/discovery_view.dart';
+import 'package:care_mate/ui/views/home/widgets/custom_grid_element.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
                 CustomGridElement(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const DiscoveryPage()));
+                        builder: (context) => const DiscoveryView()));
                   },
                   icon: const Icon(Icons.gamepad),
                 ),
