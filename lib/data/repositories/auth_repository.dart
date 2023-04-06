@@ -8,9 +8,13 @@ class AuthRepository {
     required String email,
     required String password,
   }) async {
-    return _authService.signInWithEmailAndPassword(
+    return await _authService.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
+  }
+
+  Future<void> signOut() async {
+    await _authService.singOut();
   }
 }

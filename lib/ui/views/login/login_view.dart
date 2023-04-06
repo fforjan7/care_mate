@@ -1,5 +1,5 @@
 import 'package:care_mate/data/providers/auth/login_provider.dart';
-import 'package:care_mate/ui/views/login/widgets/custom_text_form_field.dart';
+import 'package:care_mate/ui/views/login/widgets/auth_form_field.dart';
 import 'package:care_mate/ui/widgets/custom_loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -55,19 +55,32 @@ class _LoginViewState extends ConsumerState<LoginView> {
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Column(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8.0),
-                    child: CustomTextFormField(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: AuthFormField(
+                      onChanged: (value) {
+                        ref.read(loginProvider.notifier).setEmail(value);
+                      },
+                    ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8.0),
-                    child: CustomTextFormField(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: AuthFormField(
+                      onChanged: (value) {
+                        ref.read(loginProvider.notifier).setPassword(value);
+                      },
+                      isObscured: true,
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: ElevatedButton(
-                      onPressed: () {},
-                      child: const Text("Button"),
+                      onPressed: () {
+                        ref
+                            .read(loginProvider.notifier)
+                            .signInWithEmailAndPassword();
+                      },
+                      child: const Text("Login"),
                     ),
                   ),
                 ],
