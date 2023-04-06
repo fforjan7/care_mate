@@ -1,5 +1,6 @@
 import 'package:care_mate/ui/views/discovery/discovery_view.dart';
-import 'package:care_mate/ui/views/login/login_page.dart';
+import 'package:care_mate/ui/views/login/login_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
