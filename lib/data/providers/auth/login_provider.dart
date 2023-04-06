@@ -1,6 +1,7 @@
 import 'package:care_mate/common/enums/state_enum.dart';
 import 'package:care_mate/data/models/state/login_state.dart';
 import 'package:care_mate/data/providers/auth/auth_repository_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod/riverpod.dart';
 
 class LoginNotifier extends StateNotifier<LoginState> {
@@ -27,14 +28,22 @@ class LoginNotifier extends StateNotifier<LoginState> {
     state = state.copyWith(error: '', appState: AppState.initial);
   }
 
-  Future<void> login() async {
+  Future<String?> signInWithEmailAndPassword() async {
     state = state.copyWith(appState: AppState.loading);
-    print(state.email);
-    print(state.password);
-    await ref
-        .read(authRepositoryProvider)
-        .signInWithEmailAndPassword(state.email, state.password);
+    try {
+      print(state.email);
+      print(state.password);
+      String? res =
+          await ref.read(authRepositoryProvider).signInWithEmailAndPassword(
+                email: state.email,
+                password: state.password,
+              );
+    } on FirebaseAuthException catch (e) {
+      state = state.copyWith(appState: AppState.error, error: e.message!);
+    }
+
     state = state.copyWith(appState: AppState.success);
+    return null;
   }
 }
 
