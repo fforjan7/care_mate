@@ -1,4 +1,5 @@
 import 'package:care_mate/services/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepository {
   final AuthService _authService;
@@ -12,6 +13,10 @@ class AuthRepository {
       email: email,
       password: password,
     );
+  }
+
+  User? getCurrentUser() {
+    return _authService.getCurrentUser();
   }
 
   Future<void> signOut() async {

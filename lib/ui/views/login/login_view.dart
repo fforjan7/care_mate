@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:care_mate/data/providers/auth/login_provider.dart';
 import 'package:care_mate/ui/views/login/widgets/auth_form_field.dart';
 import 'package:care_mate/ui/widgets/custom_loading_indicator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -18,9 +21,23 @@ class LoginView extends ConsumerStatefulWidget {
 }
 
 class _LoginViewState extends ConsumerState<LoginView> {
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Future<void> didChangeDependencies() async {
+    super.didChangeDependencies();
+    User? user = ref.read(loginProvider.notifier).getCurrentUser();
+    if (user != null) {
+      Timer(Duration.zero, () {
+        GoRouter.of(context).go(AppRoutes.home);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var provider = ref.watch(loginProvider);
+
     ref.listen(loginProvider, (previous, next) {
       if (next.appState == AppState.success &&
           previous?.appState == AppState.loading) {
@@ -51,39 +68,42 @@ class _LoginViewState extends ConsumerState<LoginView> {
       ),
       body: provider.appState == AppState.loading
           ? const CustomLoadingIndicator()
-          : Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: AuthFormField(
-                      onChanged: (value) {
-                        ref.read(loginProvider.notifier).setEmail(value);
-                      },
+          : Form(
+              key: _formKey,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: AuthFormField(
+                        onChanged: (value) {
+                          ref.read(loginProvider.notifier).setEmail(value);
+                        },
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: AuthFormField(
-                      onChanged: (value) {
-                        ref.read(loginProvider.notifier).setPassword(value);
-                      },
-                      isObscured: true,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: AuthFormField(
+                        onChanged: (value) {
+                          ref.read(loginProvider.notifier).setPassword(value);
+                        },
+                        isObscured: true,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        ref
-                            .read(loginProvider.notifier)
-                            .signInWithEmailAndPassword();
-                      },
-                      child: const Text("Login"),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          ref
+                              .read(loginProvider.notifier)
+                              .signInWithEmailAndPassword();
+                        },
+                        child: const Text("Login"),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
     );
