@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 class CustomGridElement extends StatelessWidget {
   Function() onTap;
-  Icon icon;
+  IconData icon;
+  String title;
 
   CustomGridElement({
     super.key,
     required this.onTap,
     required this.icon,
+    required this.title,
   });
 
   @override
@@ -19,7 +21,13 @@ class CustomGridElement extends StatelessWidget {
         },
         child: Container(
           color: Colors.transparent,
-          child: icon,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon),
+              Text(title),
+            ],
+          ),
         ),
       ),
     );

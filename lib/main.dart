@@ -1,6 +1,10 @@
-import 'package:care_mate/ui/views/discovery/discovery_view.dart';
+import 'package:care_mate/ui/settings/settings_view.dart';
+import 'package:care_mate/ui/views/hospital_layout/hospital_floors_view.dart';
+import 'package:care_mate/ui/views/nfc/nfc_view.dart';
 import 'package:care_mate/ui/views/home/home_view.dart';
 import 'package:care_mate/ui/views/login/login_view.dart';
+import 'package:care_mate/ui/views/patient_add/patient_add_view.dart';
+import 'package:care_mate/ui/views/patient_search/patient_search_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
@@ -47,9 +51,33 @@ class MyApp extends StatelessWidget {
         },
       ),
       GoRoute(
-        path: AppRoutes.discovery,
+        path: AppRoutes.settings,
         builder: (BuildContext context, GoRouterState state) {
-          return const DiscoveryView();
+          return const SettingsView();
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.nfc,
+        builder: (BuildContext context, GoRouterState state) {
+          return const NfcView();
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.patientAdd,
+        builder: (BuildContext context, GoRouterState state) {
+          return const PatientAddView();
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.patientSearch,
+        builder: (BuildContext context, GoRouterState state) {
+          return const PatientSearchView();
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.hospitalFLoors,
+        builder: (BuildContext context, GoRouterState state) {
+          return const HospitalFloorsView();
         },
       ),
     ],
