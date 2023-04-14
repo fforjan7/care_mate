@@ -1,4 +1,4 @@
-import 'package:care_mate/ui/settings/settings_view.dart';
+import 'package:care_mate/ui/views/settings/settings_view.dart';
 import 'package:care_mate/ui/views/hospital_layout/hospital_floors_view.dart';
 import 'package:care_mate/ui/views/nfc/nfc_view.dart';
 import 'package:care_mate/ui/views/home/home_view.dart';
