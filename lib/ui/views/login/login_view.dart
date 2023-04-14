@@ -10,7 +10,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../common/enums/constants/routes.dart';
 import '../../../common/enums/state_enum.dart';
-import '../../../data/providers/auth/navigation_provider.dart';
+
+import '../../../data/providers/navigation_provider.dart';
 import '../../../utils/app_snackbar.dart';
 
 class LoginView extends ConsumerStatefulWidget {
