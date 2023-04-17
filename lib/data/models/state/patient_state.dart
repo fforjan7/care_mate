@@ -7,8 +7,9 @@ part 'patient_state.freezed.dart';
 class PatientState with _$PatientState {
   const factory PatientState({
     @Default("") String adress,
-    @Default("") String age,
-    @Default("") String disease,
+    @Default("") String city,
+    @Default("") String date_of_birth,
+    @Default("") String gender,
     @Default("") String name,
     @Default("") String surname,
     @Default(AppState.initial) AppState appState,
