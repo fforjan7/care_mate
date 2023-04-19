@@ -20,7 +20,7 @@ PatientAddRequest _$PatientAddRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PatientAddRequest {
-  String get adress => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
   String get date_of_birth => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $PatientAddRequestCopyWith<$Res> {
       _$PatientAddRequestCopyWithImpl<$Res, PatientAddRequest>;
   @useResult
   $Res call(
-      {String adress,
+      {String address,
       String city,
       String date_of_birth,
       String id,
@@ -63,7 +63,7 @@ class _$PatientAddRequestCopyWithImpl<$Res, $Val extends PatientAddRequest>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? adress = null,
+    Object? address = null,
     Object? city = null,
     Object? date_of_birth = null,
     Object? id = null,
@@ -72,9 +72,9 @@ class _$PatientAddRequestCopyWithImpl<$Res, $Val extends PatientAddRequest>
     Object? surname = null,
   }) {
     return _then(_value.copyWith(
-      adress: null == adress
-          ? _value.adress
-          : adress // ignore: cast_nullable_to_non_nullable
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String,
       city: null == city
           ? _value.city
@@ -113,7 +113,7 @@ abstract class _$$_PatientAddRequestCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String adress,
+      {String address,
       String city,
       String date_of_birth,
       String id,
@@ -133,7 +133,7 @@ class __$$_PatientAddRequestCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? adress = null,
+    Object? address = null,
     Object? city = null,
     Object? date_of_birth = null,
     Object? id = null,
@@ -142,9 +142,9 @@ class __$$_PatientAddRequestCopyWithImpl<$Res>
     Object? surname = null,
   }) {
     return _then(_$_PatientAddRequest(
-      adress: null == adress
-          ? _value.adress
-          : adress // ignore: cast_nullable_to_non_nullable
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String,
       city: null == city
           ? _value.city
@@ -178,7 +178,7 @@ class __$$_PatientAddRequestCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PatientAddRequest implements _PatientAddRequest {
   _$_PatientAddRequest(
-      {this.adress = "",
+      {this.address = "",
       this.city = "",
       this.date_of_birth = "",
       this.id = "",
@@ -191,7 +191,7 @@ class _$_PatientAddRequest implements _PatientAddRequest {
 
   @override
   @JsonKey()
-  final String adress;
+  final String address;
   @override
   @JsonKey()
   final String city;
@@ -213,7 +213,7 @@ class _$_PatientAddRequest implements _PatientAddRequest {
 
   @override
   String toString() {
-    return 'PatientAddRequest(adress: $adress, city: $city, date_of_birth: $date_of_birth, id: $id, gender: $gender, name: $name, surname: $surname)';
+    return 'PatientAddRequest(address: $address, city: $city, date_of_birth: $date_of_birth, id: $id, gender: $gender, name: $name, surname: $surname)';
   }
 
   @override
@@ -221,7 +221,7 @@ class _$_PatientAddRequest implements _PatientAddRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PatientAddRequest &&
-            (identical(other.adress, adress) || other.adress == adress) &&
+            (identical(other.address, address) || other.address == address) &&
             (identical(other.city, city) || other.city == city) &&
             (identical(other.date_of_birth, date_of_birth) ||
                 other.date_of_birth == date_of_birth) &&
@@ -234,7 +234,7 @@ class _$_PatientAddRequest implements _PatientAddRequest {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, adress, city, date_of_birth, id, gender, name, surname);
+      runtimeType, address, city, date_of_birth, id, gender, name, surname);
 
   @JsonKey(ignore: true)
   @override
@@ -253,7 +253,7 @@ class _$_PatientAddRequest implements _PatientAddRequest {
 
 abstract class _PatientAddRequest implements PatientAddRequest {
   factory _PatientAddRequest(
-      {final String adress,
+      {final String address,
       final String city,
       final String date_of_birth,
       final String id,
@@ -265,7 +265,7 @@ abstract class _PatientAddRequest implements PatientAddRequest {
       _$_PatientAddRequest.fromJson;
 
   @override
-  String get adress;
+  String get address;
   @override
   String get city;
   @override

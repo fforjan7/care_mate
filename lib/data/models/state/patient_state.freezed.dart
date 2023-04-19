@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PatientState {
-  String get adress => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
   String get date_of_birth => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
@@ -37,7 +37,7 @@ abstract class $PatientStateCopyWith<$Res> {
       _$PatientStateCopyWithImpl<$Res, PatientState>;
   @useResult
   $Res call(
-      {String adress,
+      {String address,
       String city,
       String date_of_birth,
       String gender,
@@ -60,7 +60,7 @@ class _$PatientStateCopyWithImpl<$Res, $Val extends PatientState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? adress = null,
+    Object? address = null,
     Object? city = null,
     Object? date_of_birth = null,
     Object? gender = null,
@@ -70,9 +70,9 @@ class _$PatientStateCopyWithImpl<$Res, $Val extends PatientState>
     Object? error = null,
   }) {
     return _then(_value.copyWith(
-      adress: null == adress
-          ? _value.adress
-          : adress // ignore: cast_nullable_to_non_nullable
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String,
       city: null == city
           ? _value.city
@@ -115,7 +115,7 @@ abstract class _$$_PatientStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String adress,
+      {String address,
       String city,
       String date_of_birth,
       String gender,
@@ -136,7 +136,7 @@ class __$$_PatientStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? adress = null,
+    Object? address = null,
     Object? city = null,
     Object? date_of_birth = null,
     Object? gender = null,
@@ -146,9 +146,9 @@ class __$$_PatientStateCopyWithImpl<$Res>
     Object? error = null,
   }) {
     return _then(_$_PatientState(
-      adress: null == adress
-          ? _value.adress
-          : adress // ignore: cast_nullable_to_non_nullable
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String,
       city: null == city
           ? _value.city
@@ -186,7 +186,7 @@ class __$$_PatientStateCopyWithImpl<$Res>
 
 class _$_PatientState implements _PatientState {
   const _$_PatientState(
-      {this.adress = "",
+      {this.address = "",
       this.city = "",
       this.date_of_birth = "",
       this.gender = "",
@@ -197,7 +197,7 @@ class _$_PatientState implements _PatientState {
 
   @override
   @JsonKey()
-  final String adress;
+  final String address;
   @override
   @JsonKey()
   final String city;
@@ -222,7 +222,7 @@ class _$_PatientState implements _PatientState {
 
   @override
   String toString() {
-    return 'PatientState(adress: $adress, city: $city, date_of_birth: $date_of_birth, gender: $gender, name: $name, surname: $surname, appState: $appState, error: $error)';
+    return 'PatientState(address: $address, city: $city, date_of_birth: $date_of_birth, gender: $gender, name: $name, surname: $surname, appState: $appState, error: $error)';
   }
 
   @override
@@ -230,7 +230,7 @@ class _$_PatientState implements _PatientState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PatientState &&
-            (identical(other.adress, adress) || other.adress == adress) &&
+            (identical(other.address, address) || other.address == address) &&
             (identical(other.city, city) || other.city == city) &&
             (identical(other.date_of_birth, date_of_birth) ||
                 other.date_of_birth == date_of_birth) &&
@@ -243,7 +243,7 @@ class _$_PatientState implements _PatientState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, adress, city, date_of_birth,
+  int get hashCode => Object.hash(runtimeType, address, city, date_of_birth,
       gender, name, surname, appState, error);
 
   @JsonKey(ignore: true)
@@ -255,7 +255,7 @@ class _$_PatientState implements _PatientState {
 
 abstract class _PatientState implements PatientState {
   const factory _PatientState(
-      {final String adress,
+      {final String address,
       final String city,
       final String date_of_birth,
       final String gender,
@@ -265,7 +265,7 @@ abstract class _PatientState implements PatientState {
       final String error}) = _$_PatientState;
 
   @override
-  String get adress;
+  String get address;
   @override
   String get city;
   @override

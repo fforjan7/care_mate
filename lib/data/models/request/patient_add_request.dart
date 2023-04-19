@@ -6,7 +6,7 @@ part 'patient_add_request.g.dart';
 @freezed
 class PatientAddRequest with _$PatientAddRequest {
   factory PatientAddRequest({
-    @Default("") String adress,
+    @Default("") String address,
     @Default("") String city,
     @Default("") String date_of_birth,
     @Default("") String id,

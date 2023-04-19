@@ -1,5 +1,4 @@
 import 'package:care_mate/data/models/request/patient_add_request.dart';
-import 'package:care_mate/data/models/state/patient_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreService {
@@ -7,10 +6,18 @@ class FirestoreService {
 
   FirestoreService(this._firebaseFireStore);
 
-  Future<void> addPatient(PatientAddRequest patient) async {
+  Future<void> addPatient({
+    required PatientAddRequest patient,
+  }) async {
     final CollectionReference patientsCollectionRef =
         _firebaseFireStore.collection('patients');
+    final DocumentReference patientDocRef = patientsCollectionRef.doc();
 
-    await patientsCollectionRef.add(patient);
+    print("\n =${patientsCollectionRef.doc().parent.id}\n");
+    print("\n =${patientsCollectionRef.doc().id}\n");
+
+    await patientDocRef.set(
+      patient.copyWith(id: patientDocRef.id).toJson(),
+    );
   }
 }

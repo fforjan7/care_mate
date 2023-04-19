@@ -8,7 +8,7 @@ part of 'patient_add_request.dart';
 
 _$_PatientAddRequest _$$_PatientAddRequestFromJson(Map<String, dynamic> json) =>
     _$_PatientAddRequest(
-      adress: json['adress'] as String? ?? "",
+      address: json['address'] as String? ?? "",
       city: json['city'] as String? ?? "",
       date_of_birth: json['date_of_birth'] as String? ?? "",
       id: json['id'] as String? ?? "",
@@ -20,7 +20,7 @@ _$_PatientAddRequest _$$_PatientAddRequestFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_PatientAddRequestToJson(
         _$_PatientAddRequest instance) =>
     <String, dynamic>{
-      'adress': instance.adress,
+      'address': instance.address,
       'city': instance.city,
       'date_of_birth': instance.date_of_birth,
       'id': instance.id,

@@ -11,7 +11,6 @@ import 'package:go_router/go_router.dart';
 import '../../../common/enums/constants/routes.dart';
 import '../../../common/enums/state_enum.dart';
 
-import '../../../data/providers/navigation_provider.dart';
 import '../../../utils/app_snackbar.dart';
 
 class LoginView extends ConsumerStatefulWidget {
@@ -43,7 +42,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
       if (next.appState == AppState.success &&
           previous?.appState == AppState.loading) {
         ref.read(loginProvider.notifier).setInitialState();
-        ref.read(navigationProvider.notifier).state = AppRoutes.home;
+        //ref.read(navigationProvider.notifier).state = AppRoutes.home;
         ref.read(loginProvider.notifier).clearEmail();
         ref.read(loginProvider.notifier).clearPassword();
         GoRouter.of(context).go(AppRoutes.home);
