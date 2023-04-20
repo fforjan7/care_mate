@@ -20,6 +20,7 @@ class SettingsView extends ConsumerWidget {
           child: ElevatedButton(
             onPressed: () {
               ref.read(loginProvider.notifier).signOut();
+              //ref.read(navigationProvider.notifier).state = AppRoutes.login;
               GoRouter.of(context).go(AppRoutes.login);
             },
             child: const Text("Logout"),

@@ -1,4 +1,5 @@
 import 'package:care_mate/data/providers/firestore/patient_add_provider.dart';
+import 'package:care_mate/ui/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -16,6 +17,8 @@ class PatientAddView extends ConsumerStatefulWidget {
 }
 
 class _PatientAddViewState extends ConsumerState<PatientAddView> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     var provider = ref.watch(patientAddProvider);
@@ -47,41 +50,95 @@ class _PatientAddViewState extends ConsumerState<PatientAddView> {
       appBar: AppBar(title: const Text("Add new patient")),
       body: provider.appState == AppState.loading
           ? const CustomLoadingIndicator()
-          : Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: TextFormField(
-                      onChanged: (value) {
-                        ref.read(patientAddProvider.notifier).setName(value);
-                        ref
-                            .read(patientAddProvider.notifier)
-                            .setAddress("Mosorska 21");
-                        ref
-                            .read(patientAddProvider.notifier)
-                            .setDateOfBirth("25.5.1998.");
-                        ref
-                            .read(patientAddProvider.notifier)
-                            .setSurname("Forjannn");
-                        ref
-                            .read(patientAddProvider.notifier)
-                            .setGender("musko");
-                        ref.read(patientAddProvider.notifier).setCity("Osijek");
-                      },
-                    ),
+          : SingleChildScrollView(
+              child: Form(
+                key: _formKey,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: CustomTextFormField(
+                          hintText: "Name",
+                          onChanged: (value) {
+                            ref
+                                .read(patientAddProvider.notifier)
+                                .setName(value);
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: CustomTextFormField(
+                          hintText: "Surame",
+                          onChanged: (value) {
+                            ref
+                                .read(patientAddProvider.notifier)
+                                .setSurname(value);
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: CustomTextFormField(
+                          hintText: "CHANGE TO DATEPICKER",
+                          onChanged: (value) {
+                            ref
+                                .read(patientAddProvider.notifier)
+                                .setDateOfBirth(value);
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: CustomTextFormField(
+                          hintText: "CHANGE TO DropdownButtonFormField",
+                          onChanged: (value) {
+                            ref
+                                .read(patientAddProvider.notifier)
+                                .setGender(value);
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: CustomTextFormField(
+                          hintText: "City",
+                          onChanged: (value) {
+                            ref
+                                .read(patientAddProvider.notifier)
+                                .setCity(value);
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: CustomTextFormField(
+                          hintText: "Address",
+                          onChanged: (value) {
+                            ref
+                                .read(patientAddProvider.notifier)
+                                .setAddress(value);
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              ref
+                                  .read(patientAddProvider.notifier)
+                                  .patientAdd();
+                            }
+                          },
+                          child: const Text("Add patient"),
+                        ),
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        ref.read(patientAddProvider.notifier).patientAdd();
-                      },
-                      child: const Text("Add patient"),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
     );
