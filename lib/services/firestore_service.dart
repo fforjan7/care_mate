@@ -1,4 +1,5 @@
 import 'package:care_mate/data/models/request/patient_add_request.dart';
+import 'package:care_mate/data/models/state/patient.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreService {
@@ -19,5 +20,29 @@ class FirestoreService {
     await patientDocRef.set(
       patient.copyWith(id: patientDocRef.id).toJson(),
     );
+  }
+
+  Future<List<Patient>> getPatients() async {
+    final CollectionReference patientsCollectionRef =
+        _firebaseFireStore.collection('patients');
+
+    final QuerySnapshot snapshot = await patientsCollectionRef.get();
+    final List<QueryDocumentSnapshot> docs = snapshot.docs;
+
+    final List<Patient> patients = [];
+
+    for (var doc in docs) {
+      final Map<String, dynamic>? data = doc.data() as Map<String, dynamic>?;
+      if (data != null) {
+        final Patient patient = Patient.fromJson(data);
+        if (patient.blood_pressures.isNotEmpty) {
+          print("\nAAAAAAAA:${patient.blood_pressures[0].measurement_time}\n");
+        }
+        patients.add(patient);
+        // do something with the user data...
+      }
+    }
+    print(patients);
+    return patients;
   }
 }

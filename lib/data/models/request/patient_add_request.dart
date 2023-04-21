@@ -7,12 +7,14 @@ part 'patient_add_request.g.dart';
 class PatientAddRequest with _$PatientAddRequest {
   factory PatientAddRequest({
     @Default("") String address,
+    @Default([]) List blood_pressure,
     @Default("") String city,
     @Default("") String date_of_birth,
     @Default("") String id,
     @Default("") String gender,
     @Default("") String name,
     @Default("") String surname,
+    @Default([]) List temperature,
   }) = _PatientAddRequest;
 
   factory PatientAddRequest.fromJson(Map<String, dynamic> json) =>

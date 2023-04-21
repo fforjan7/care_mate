@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'patient_add_request.dart';
+part of 'patient.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,50 +14,46 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PatientAddRequest _$PatientAddRequestFromJson(Map<String, dynamic> json) {
-  return _PatientAddRequest.fromJson(json);
+Patient _$PatientFromJson(Map<String, dynamic> json) {
+  return _Patient.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PatientAddRequest {
+mixin _$Patient {
   String get address => throw _privateConstructorUsedError;
-  List<dynamic> get blood_pressure => throw _privateConstructorUsedError;
+  List<BloodPressure> get blood_pressures => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
   String get date_of_birth => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get surname => throw _privateConstructorUsedError;
-  List<dynamic> get temperature => throw _privateConstructorUsedError;
+  List<Temperature> get temperatures => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PatientAddRequestCopyWith<PatientAddRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+  $PatientCopyWith<Patient> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PatientAddRequestCopyWith<$Res> {
-  factory $PatientAddRequestCopyWith(
-          PatientAddRequest value, $Res Function(PatientAddRequest) then) =
-      _$PatientAddRequestCopyWithImpl<$Res, PatientAddRequest>;
+abstract class $PatientCopyWith<$Res> {
+  factory $PatientCopyWith(Patient value, $Res Function(Patient) then) =
+      _$PatientCopyWithImpl<$Res, Patient>;
   @useResult
   $Res call(
       {String address,
-      List<dynamic> blood_pressure,
+      List<BloodPressure> blood_pressures,
       String city,
       String date_of_birth,
-      String id,
       String gender,
       String name,
       String surname,
-      List<dynamic> temperature});
+      List<Temperature> temperatures});
 }
 
 /// @nodoc
-class _$PatientAddRequestCopyWithImpl<$Res, $Val extends PatientAddRequest>
-    implements $PatientAddRequestCopyWith<$Res> {
-  _$PatientAddRequestCopyWithImpl(this._value, this._then);
+class _$PatientCopyWithImpl<$Res, $Val extends Patient>
+    implements $PatientCopyWith<$Res> {
+  _$PatientCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -68,24 +64,23 @@ class _$PatientAddRequestCopyWithImpl<$Res, $Val extends PatientAddRequest>
   @override
   $Res call({
     Object? address = null,
-    Object? blood_pressure = null,
+    Object? blood_pressures = null,
     Object? city = null,
     Object? date_of_birth = null,
-    Object? id = null,
     Object? gender = null,
     Object? name = null,
     Object? surname = null,
-    Object? temperature = null,
+    Object? temperatures = null,
   }) {
     return _then(_value.copyWith(
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      blood_pressure: null == blood_pressure
-          ? _value.blood_pressure
-          : blood_pressure // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+      blood_pressures: null == blood_pressures
+          ? _value.blood_pressures
+          : blood_pressures // ignore: cast_nullable_to_non_nullable
+              as List<BloodPressure>,
       city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -93,10 +88,6 @@ class _$PatientAddRequestCopyWithImpl<$Res, $Val extends PatientAddRequest>
       date_of_birth: null == date_of_birth
           ? _value.date_of_birth
           : date_of_birth // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
               as String,
       gender: null == gender
           ? _value.gender
@@ -110,64 +101,60 @@ class _$PatientAddRequestCopyWithImpl<$Res, $Val extends PatientAddRequest>
           ? _value.surname
           : surname // ignore: cast_nullable_to_non_nullable
               as String,
-      temperature: null == temperature
-          ? _value.temperature
-          : temperature // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+      temperatures: null == temperatures
+          ? _value.temperatures
+          : temperatures // ignore: cast_nullable_to_non_nullable
+              as List<Temperature>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_PatientAddRequestCopyWith<$Res>
-    implements $PatientAddRequestCopyWith<$Res> {
-  factory _$$_PatientAddRequestCopyWith(_$_PatientAddRequest value,
-          $Res Function(_$_PatientAddRequest) then) =
-      __$$_PatientAddRequestCopyWithImpl<$Res>;
+abstract class _$$_PatientCopyWith<$Res> implements $PatientCopyWith<$Res> {
+  factory _$$_PatientCopyWith(
+          _$_Patient value, $Res Function(_$_Patient) then) =
+      __$$_PatientCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String address,
-      List<dynamic> blood_pressure,
+      List<BloodPressure> blood_pressures,
       String city,
       String date_of_birth,
-      String id,
       String gender,
       String name,
       String surname,
-      List<dynamic> temperature});
+      List<Temperature> temperatures});
 }
 
 /// @nodoc
-class __$$_PatientAddRequestCopyWithImpl<$Res>
-    extends _$PatientAddRequestCopyWithImpl<$Res, _$_PatientAddRequest>
-    implements _$$_PatientAddRequestCopyWith<$Res> {
-  __$$_PatientAddRequestCopyWithImpl(
-      _$_PatientAddRequest _value, $Res Function(_$_PatientAddRequest) _then)
+class __$$_PatientCopyWithImpl<$Res>
+    extends _$PatientCopyWithImpl<$Res, _$_Patient>
+    implements _$$_PatientCopyWith<$Res> {
+  __$$_PatientCopyWithImpl(_$_Patient _value, $Res Function(_$_Patient) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? address = null,
-    Object? blood_pressure = null,
+    Object? blood_pressures = null,
     Object? city = null,
     Object? date_of_birth = null,
-    Object? id = null,
     Object? gender = null,
     Object? name = null,
     Object? surname = null,
-    Object? temperature = null,
+    Object? temperatures = null,
   }) {
-    return _then(_$_PatientAddRequest(
+    return _then(_$_Patient(
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      blood_pressure: null == blood_pressure
-          ? _value._blood_pressure
-          : blood_pressure // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+      blood_pressures: null == blood_pressures
+          ? _value._blood_pressures
+          : blood_pressures // ignore: cast_nullable_to_non_nullable
+              as List<BloodPressure>,
       city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -175,10 +162,6 @@ class __$$_PatientAddRequestCopyWithImpl<$Res>
       date_of_birth: null == date_of_birth
           ? _value.date_of_birth
           : date_of_birth // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
               as String,
       gender: null == gender
           ? _value.gender
@@ -192,43 +175,42 @@ class __$$_PatientAddRequestCopyWithImpl<$Res>
           ? _value.surname
           : surname // ignore: cast_nullable_to_non_nullable
               as String,
-      temperature: null == temperature
-          ? _value._temperature
-          : temperature // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+      temperatures: null == temperatures
+          ? _value._temperatures
+          : temperatures // ignore: cast_nullable_to_non_nullable
+              as List<Temperature>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_PatientAddRequest implements _PatientAddRequest {
-  _$_PatientAddRequest(
+class _$_Patient implements _Patient {
+  const _$_Patient(
       {this.address = "",
-      final List<dynamic> blood_pressure = const [],
+      final List<BloodPressure> blood_pressures = const [],
       this.city = "",
       this.date_of_birth = "",
-      this.id = "",
       this.gender = "",
       this.name = "",
       this.surname = "",
-      final List<dynamic> temperature = const []})
-      : _blood_pressure = blood_pressure,
-        _temperature = temperature;
+      final List<Temperature> temperatures = const []})
+      : _blood_pressures = blood_pressures,
+        _temperatures = temperatures;
 
-  factory _$_PatientAddRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_PatientAddRequestFromJson(json);
+  factory _$_Patient.fromJson(Map<String, dynamic> json) =>
+      _$$_PatientFromJson(json);
 
   @override
   @JsonKey()
   final String address;
-  final List<dynamic> _blood_pressure;
+  final List<BloodPressure> _blood_pressures;
   @override
   @JsonKey()
-  List<dynamic> get blood_pressure {
-    if (_blood_pressure is EqualUnmodifiableListView) return _blood_pressure;
+  List<BloodPressure> get blood_pressures {
+    if (_blood_pressures is EqualUnmodifiableListView) return _blood_pressures;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_blood_pressure);
+    return EqualUnmodifiableListView(_blood_pressures);
   }
 
   @override
@@ -239,9 +221,6 @@ class _$_PatientAddRequest implements _PatientAddRequest {
   final String date_of_birth;
   @override
   @JsonKey()
-  final String id;
-  @override
-  @JsonKey()
   final String gender;
   @override
   @JsonKey()
@@ -249,37 +228,36 @@ class _$_PatientAddRequest implements _PatientAddRequest {
   @override
   @JsonKey()
   final String surname;
-  final List<dynamic> _temperature;
+  final List<Temperature> _temperatures;
   @override
   @JsonKey()
-  List<dynamic> get temperature {
-    if (_temperature is EqualUnmodifiableListView) return _temperature;
+  List<Temperature> get temperatures {
+    if (_temperatures is EqualUnmodifiableListView) return _temperatures;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_temperature);
+    return EqualUnmodifiableListView(_temperatures);
   }
 
   @override
   String toString() {
-    return 'PatientAddRequest(address: $address, blood_pressure: $blood_pressure, city: $city, date_of_birth: $date_of_birth, id: $id, gender: $gender, name: $name, surname: $surname, temperature: $temperature)';
+    return 'Patient(address: $address, blood_pressures: $blood_pressures, city: $city, date_of_birth: $date_of_birth, gender: $gender, name: $name, surname: $surname, temperatures: $temperatures)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PatientAddRequest &&
+            other is _$_Patient &&
             (identical(other.address, address) || other.address == address) &&
             const DeepCollectionEquality()
-                .equals(other._blood_pressure, _blood_pressure) &&
+                .equals(other._blood_pressures, _blood_pressures) &&
             (identical(other.city, city) || other.city == city) &&
             (identical(other.date_of_birth, date_of_birth) ||
                 other.date_of_birth == date_of_birth) &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.surname, surname) || other.surname == surname) &&
             const DeepCollectionEquality()
-                .equals(other._temperature, _temperature));
+                .equals(other._temperatures, _temperatures));
   }
 
   @JsonKey(ignore: true)
@@ -287,55 +265,49 @@ class _$_PatientAddRequest implements _PatientAddRequest {
   int get hashCode => Object.hash(
       runtimeType,
       address,
-      const DeepCollectionEquality().hash(_blood_pressure),
+      const DeepCollectionEquality().hash(_blood_pressures),
       city,
       date_of_birth,
-      id,
       gender,
       name,
       surname,
-      const DeepCollectionEquality().hash(_temperature));
+      const DeepCollectionEquality().hash(_temperatures));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PatientAddRequestCopyWith<_$_PatientAddRequest> get copyWith =>
-      __$$_PatientAddRequestCopyWithImpl<_$_PatientAddRequest>(
-          this, _$identity);
+  _$$_PatientCopyWith<_$_Patient> get copyWith =>
+      __$$_PatientCopyWithImpl<_$_Patient>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PatientAddRequestToJson(
+    return _$$_PatientToJson(
       this,
     );
   }
 }
 
-abstract class _PatientAddRequest implements PatientAddRequest {
-  factory _PatientAddRequest(
+abstract class _Patient implements Patient {
+  const factory _Patient(
       {final String address,
-      final List<dynamic> blood_pressure,
+      final List<BloodPressure> blood_pressures,
       final String city,
       final String date_of_birth,
-      final String id,
       final String gender,
       final String name,
       final String surname,
-      final List<dynamic> temperature}) = _$_PatientAddRequest;
+      final List<Temperature> temperatures}) = _$_Patient;
 
-  factory _PatientAddRequest.fromJson(Map<String, dynamic> json) =
-      _$_PatientAddRequest.fromJson;
+  factory _Patient.fromJson(Map<String, dynamic> json) = _$_Patient.fromJson;
 
   @override
   String get address;
   @override
-  List<dynamic> get blood_pressure;
+  List<BloodPressure> get blood_pressures;
   @override
   String get city;
   @override
   String get date_of_birth;
-  @override
-  String get id;
   @override
   String get gender;
   @override
@@ -343,9 +315,9 @@ abstract class _PatientAddRequest implements PatientAddRequest {
   @override
   String get surname;
   @override
-  List<dynamic> get temperature;
+  List<Temperature> get temperatures;
   @override
   @JsonKey(ignore: true)
-  _$$_PatientAddRequestCopyWith<_$_PatientAddRequest> get copyWith =>
+  _$$_PatientCopyWith<_$_Patient> get copyWith =>
       throw _privateConstructorUsedError;
 }

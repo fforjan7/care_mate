@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'patient_state.dart';
+part of 'patient_add_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$PatientState {
+mixin _$PatientAddState {
   String get address => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
   String get date_of_birth => throw _privateConstructorUsedError;
@@ -26,15 +26,15 @@ mixin _$PatientState {
   String get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PatientStateCopyWith<PatientState> get copyWith =>
+  $PatientAddStateCopyWith<PatientAddState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PatientStateCopyWith<$Res> {
-  factory $PatientStateCopyWith(
-          PatientState value, $Res Function(PatientState) then) =
-      _$PatientStateCopyWithImpl<$Res, PatientState>;
+abstract class $PatientAddStateCopyWith<$Res> {
+  factory $PatientAddStateCopyWith(
+          PatientAddState value, $Res Function(PatientAddState) then) =
+      _$PatientAddStateCopyWithImpl<$Res, PatientAddState>;
   @useResult
   $Res call(
       {String address,
@@ -48,9 +48,9 @@ abstract class $PatientStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PatientStateCopyWithImpl<$Res, $Val extends PatientState>
-    implements $PatientStateCopyWith<$Res> {
-  _$PatientStateCopyWithImpl(this._value, this._then);
+class _$PatientAddStateCopyWithImpl<$Res, $Val extends PatientAddState>
+    implements $PatientAddStateCopyWith<$Res> {
+  _$PatientAddStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -107,11 +107,11 @@ class _$PatientStateCopyWithImpl<$Res, $Val extends PatientState>
 }
 
 /// @nodoc
-abstract class _$$_PatientStateCopyWith<$Res>
-    implements $PatientStateCopyWith<$Res> {
-  factory _$$_PatientStateCopyWith(
-          _$_PatientState value, $Res Function(_$_PatientState) then) =
-      __$$_PatientStateCopyWithImpl<$Res>;
+abstract class _$$_PatientAddStateCopyWith<$Res>
+    implements $PatientAddStateCopyWith<$Res> {
+  factory _$$_PatientAddStateCopyWith(
+          _$_PatientAddState value, $Res Function(_$_PatientAddState) then) =
+      __$$_PatientAddStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -126,11 +126,11 @@ abstract class _$$_PatientStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PatientStateCopyWithImpl<$Res>
-    extends _$PatientStateCopyWithImpl<$Res, _$_PatientState>
-    implements _$$_PatientStateCopyWith<$Res> {
-  __$$_PatientStateCopyWithImpl(
-      _$_PatientState _value, $Res Function(_$_PatientState) _then)
+class __$$_PatientAddStateCopyWithImpl<$Res>
+    extends _$PatientAddStateCopyWithImpl<$Res, _$_PatientAddState>
+    implements _$$_PatientAddStateCopyWith<$Res> {
+  __$$_PatientAddStateCopyWithImpl(
+      _$_PatientAddState _value, $Res Function(_$_PatientAddState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -145,7 +145,7 @@ class __$$_PatientStateCopyWithImpl<$Res>
     Object? appState = null,
     Object? error = null,
   }) {
-    return _then(_$_PatientState(
+    return _then(_$_PatientAddState(
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -184,8 +184,8 @@ class __$$_PatientStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PatientState implements _PatientState {
-  const _$_PatientState(
+class _$_PatientAddState implements _PatientAddState {
+  const _$_PatientAddState(
       {this.address = "",
       this.city = "",
       this.date_of_birth = "",
@@ -222,14 +222,14 @@ class _$_PatientState implements _PatientState {
 
   @override
   String toString() {
-    return 'PatientState(address: $address, city: $city, date_of_birth: $date_of_birth, gender: $gender, name: $name, surname: $surname, appState: $appState, error: $error)';
+    return 'PatientAddState(address: $address, city: $city, date_of_birth: $date_of_birth, gender: $gender, name: $name, surname: $surname, appState: $appState, error: $error)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PatientState &&
+            other is _$_PatientAddState &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.city, city) || other.city == city) &&
             (identical(other.date_of_birth, date_of_birth) ||
@@ -249,12 +249,12 @@ class _$_PatientState implements _PatientState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PatientStateCopyWith<_$_PatientState> get copyWith =>
-      __$$_PatientStateCopyWithImpl<_$_PatientState>(this, _$identity);
+  _$$_PatientAddStateCopyWith<_$_PatientAddState> get copyWith =>
+      __$$_PatientAddStateCopyWithImpl<_$_PatientAddState>(this, _$identity);
 }
 
-abstract class _PatientState implements PatientState {
-  const factory _PatientState(
+abstract class _PatientAddState implements PatientAddState {
+  const factory _PatientAddState(
       {final String address,
       final String city,
       final String date_of_birth,
@@ -262,7 +262,7 @@ abstract class _PatientState implements PatientState {
       final String name,
       final String surname,
       final AppState appState,
-      final String error}) = _$_PatientState;
+      final String error}) = _$_PatientAddState;
 
   @override
   String get address;
@@ -282,6 +282,6 @@ abstract class _PatientState implements PatientState {
   String get error;
   @override
   @JsonKey(ignore: true)
-  _$$_PatientStateCopyWith<_$_PatientState> get copyWith =>
+  _$$_PatientAddStateCopyWith<_$_PatientAddState> get copyWith =>
       throw _privateConstructorUsedError;
 }

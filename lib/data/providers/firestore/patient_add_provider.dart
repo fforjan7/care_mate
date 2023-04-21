@@ -3,10 +3,10 @@ import 'package:care_mate/data/providers/firestore/firestore_repository_provider
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../common/enums/state_enum.dart';
-import '../../models/state/patient_state.dart';
+import '../../models/state/patient_add_state.dart';
 
-class PatientAddNotifier extends StateNotifier<PatientState> {
-  PatientAddNotifier(this.ref) : super(const PatientState());
+class PatientAddNotifier extends StateNotifier<PatientAddState> {
+  PatientAddNotifier(this.ref) : super(const PatientAddState());
   final Ref ref;
 
   void setAddress(String address) {
@@ -69,6 +69,6 @@ class PatientAddNotifier extends StateNotifier<PatientState> {
 }
 
 final patientAddProvider =
-    StateNotifierProvider<PatientAddNotifier, PatientState>((ref) {
+    StateNotifierProvider<PatientAddNotifier, PatientAddState>((ref) {
   return PatientAddNotifier(ref);
 });
