@@ -1,6 +1,8 @@
 import 'package:care_mate/data/models/request/patient_add_request.dart';
-import 'package:care_mate/data/models/state/patient.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../data/models/patient.dart';
 
 class FirestoreService {
   final FirebaseFirestore _firebaseFireStore;
@@ -26,7 +28,8 @@ class FirestoreService {
     final CollectionReference patientsCollectionRef =
         _firebaseFireStore.collection('patients');
 
-    final QuerySnapshot snapshot = await patientsCollectionRef.get();
+    final QuerySnapshot snapshot =
+        await patientsCollectionRef.get(const GetOptions(source: Source.cache));
     final List<QueryDocumentSnapshot> docs = snapshot.docs;
 
     final List<Patient> patients = [];

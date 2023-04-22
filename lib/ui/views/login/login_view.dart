@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:care_mate/data/providers/auth/login_provider.dart';
+import 'package:care_mate/data/providers/login_provider.dart';
 import 'package:care_mate/ui/views/login/widgets/auth_form_field.dart';
 import 'package:care_mate/ui/widgets/custom_loading_indicator.dart';
 import 'package:care_mate/utils/validator.dart';

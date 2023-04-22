@@ -1,4 +1,4 @@
-import 'package:care_mate/data/providers/firestore/patient_add_provider.dart';
+import 'package:care_mate/data/providers/patient_add_provider.dart';
 import 'package:care_mate/ui/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

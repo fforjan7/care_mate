@@ -1,9 +1,9 @@
 import 'package:care_mate/data/models/request/patient_add_request.dart';
-import 'package:care_mate/data/providers/firestore/firestore_repository_provider.dart';
+import 'package:care_mate/data/providers/repositories/firestore_repository_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../common/enums/state_enum.dart';
-import '../../models/state/patient_add_state.dart';
+import '../../common/enums/state_enum.dart';
+import '../models/state/patient_add_state.dart';
 
 class PatientAddNotifier extends StateNotifier<PatientAddState> {
   PatientAddNotifier(this.ref) : super(const PatientAddState());
