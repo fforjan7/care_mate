@@ -1,4 +1,14 @@
-import 'package:care_mate/common/enums/state_enum.dart';
+/* import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class HospitalLayoutNotifier extends StateNotifier<> {
+  HospitalLayoutNotifier(): super();
+  
+}
+
+ */
+
+
+/* import 'package:care_mate/common/enums/state_enum.dart';
 import 'package:care_mate/data/models/state/patient_search_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -22,4 +32,4 @@ class PatientSearchNotifier extends StateNotifier<PatientSearchState> {
 final patientSearchProvider =
     StateNotifierProvider<PatientSearchNotifier, PatientSearchState>((ref) {
   return PatientSearchNotifier(ref);
-});
+}); */

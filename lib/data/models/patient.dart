@@ -10,6 +10,7 @@ class Patient with _$Patient {
     @Default([]) List<BloodPressure> blood_pressures,
     @Default("") String city,
     @Default("") String date_of_birth,
+    @Default("") String id,
     @Default("") String gender,
     @Default("") String name,
     @Default("") String surname,

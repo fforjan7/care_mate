@@ -24,6 +24,7 @@ mixin _$Patient {
   List<BloodPressure> get blood_pressures => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
   String get date_of_birth => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get surname => throw _privateConstructorUsedError;
@@ -44,6 +45,7 @@ abstract class $PatientCopyWith<$Res> {
       List<BloodPressure> blood_pressures,
       String city,
       String date_of_birth,
+      String id,
       String gender,
       String name,
       String surname,
@@ -67,6 +69,7 @@ class _$PatientCopyWithImpl<$Res, $Val extends Patient>
     Object? blood_pressures = null,
     Object? city = null,
     Object? date_of_birth = null,
+    Object? id = null,
     Object? gender = null,
     Object? name = null,
     Object? surname = null,
@@ -88,6 +91,10 @@ class _$PatientCopyWithImpl<$Res, $Val extends Patient>
       date_of_birth: null == date_of_birth
           ? _value.date_of_birth
           : date_of_birth // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       gender: null == gender
           ? _value.gender
@@ -121,6 +128,7 @@ abstract class _$$_PatientCopyWith<$Res> implements $PatientCopyWith<$Res> {
       List<BloodPressure> blood_pressures,
       String city,
       String date_of_birth,
+      String id,
       String gender,
       String name,
       String surname,
@@ -141,6 +149,7 @@ class __$$_PatientCopyWithImpl<$Res>
     Object? blood_pressures = null,
     Object? city = null,
     Object? date_of_birth = null,
+    Object? id = null,
     Object? gender = null,
     Object? name = null,
     Object? surname = null,
@@ -162,6 +171,10 @@ class __$$_PatientCopyWithImpl<$Res>
       date_of_birth: null == date_of_birth
           ? _value.date_of_birth
           : date_of_birth // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       gender: null == gender
           ? _value.gender
@@ -191,6 +204,7 @@ class _$_Patient implements _Patient {
       final List<BloodPressure> blood_pressures = const [],
       this.city = "",
       this.date_of_birth = "",
+      this.id = "",
       this.gender = "",
       this.name = "",
       this.surname = "",
@@ -221,6 +235,9 @@ class _$_Patient implements _Patient {
   final String date_of_birth;
   @override
   @JsonKey()
+  final String id;
+  @override
+  @JsonKey()
   final String gender;
   @override
   @JsonKey()
@@ -239,7 +256,7 @@ class _$_Patient implements _Patient {
 
   @override
   String toString() {
-    return 'Patient(address: $address, blood_pressures: $blood_pressures, city: $city, date_of_birth: $date_of_birth, gender: $gender, name: $name, surname: $surname, temperatures: $temperatures)';
+    return 'Patient(address: $address, blood_pressures: $blood_pressures, city: $city, date_of_birth: $date_of_birth, id: $id, gender: $gender, name: $name, surname: $surname, temperatures: $temperatures)';
   }
 
   @override
@@ -253,6 +270,7 @@ class _$_Patient implements _Patient {
             (identical(other.city, city) || other.city == city) &&
             (identical(other.date_of_birth, date_of_birth) ||
                 other.date_of_birth == date_of_birth) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.surname, surname) || other.surname == surname) &&
@@ -268,6 +286,7 @@ class _$_Patient implements _Patient {
       const DeepCollectionEquality().hash(_blood_pressures),
       city,
       date_of_birth,
+      id,
       gender,
       name,
       surname,
@@ -293,6 +312,7 @@ abstract class _Patient implements Patient {
       final List<BloodPressure> blood_pressures,
       final String city,
       final String date_of_birth,
+      final String id,
       final String gender,
       final String name,
       final String surname,
@@ -308,6 +328,8 @@ abstract class _Patient implements Patient {
   String get city;
   @override
   String get date_of_birth;
+  @override
+  String get id;
   @override
   String get gender;
   @override

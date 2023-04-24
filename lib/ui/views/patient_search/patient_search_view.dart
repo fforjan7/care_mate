@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../common/enums/state_enum.dart';
+import '../../../data/providers/patient_get_provider.dart';
 import '../../../utils/app_snackbar.dart';
+import '../../widgets/custom_loading_indicator.dart';
 
 class PatientSearchView extends ConsumerStatefulWidget {
   const PatientSearchView({super.key});
@@ -14,19 +16,10 @@ class PatientSearchView extends ConsumerStatefulWidget {
 
 class _PatientSearchViewState extends ConsumerState<PatientSearchView> {
   @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-    var provider = ref.watch(patientSearchProvider);
-    WidgetsBinding.instance.scheduleFrameCallback((timeStamp) {
-      ref.read(patientSearchProvider.notifier).getPatients();
-      print("NE RADI");
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    var provider = ref.watch(patientSearchProvider);
+    var searchProvider = ref.watch(patientSearchProvider);
+    var patientsGetProvider = ref.watch(patientGetProvider);
 
     ref.listen(patientSearchProvider, (previous, next) {
       if (next.appState == AppState.success &&
@@ -53,17 +46,21 @@ class _PatientSearchViewState extends ConsumerState<PatientSearchView> {
 
     return Scaffold(
       appBar: AppBar(title: const Text("Search patient")),
-      body: ListView.separated(
-        itemCount: provider.patients.length,
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(provider.patients[index].name),
-            subtitle: Text(provider.patients[index].surname),
-            trailing: Text(provider.patients[index].date_of_birth),
-          );
-        },
-      ),
+      body: patientsGetProvider.appState == AppState.loading
+          ? const CustomLoadingIndicator()
+          : ListView.separated(
+              itemCount: patientsGetProvider.patients.length,
+              separatorBuilder: (BuildContext context, int index) =>
+                  const Divider(),
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: Text(patientsGetProvider.patients[index].name),
+                  subtitle: Text(patientsGetProvider.patients[index].surname),
+                  trailing:
+                      Text(patientsGetProvider.patients[index].date_of_birth),
+                );
+              },
+            ),
     );
   }
 }
