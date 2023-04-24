@@ -16,7 +16,7 @@ class _HospitalFloorsViewState extends ConsumerState<HospitalFloorsView> {
     super.didChangeDependencies();
     var provider = ref.watch(firestoreServiceProvider);
     WidgetsBinding.instance.scheduleFrameCallback((timeStamp) async {
-      await ref.read(firestoreServiceProvider).test();
+      await ref.read(firestoreServiceProvider).getHospitalLayout();
     });
   }
 

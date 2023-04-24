@@ -121,7 +121,7 @@ class FirestoreService {
     }
   }
 
-  Future<List<Floor>> test() async {
+  Future<List<Floor>> getHospitalLayout() async {
     final List<Floor> floors = [];
 
     try {
