@@ -60,6 +60,7 @@ class PatientAddNotifier extends StateNotifier<PatientAddState> {
             surname: state.surname,
           ));
     } catch (e) {
+      print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
       print(e.toString());
       state = state.copyWith(appState: AppState.error, error: e.toString());
     }

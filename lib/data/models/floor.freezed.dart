@@ -20,8 +20,8 @@ Floor _$FloorFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Floor {
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  List<Room> get rooms => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +33,7 @@ abstract class $FloorCopyWith<$Res> {
   factory $FloorCopyWith(Floor value, $Res Function(Floor) then) =
       _$FloorCopyWithImpl<$Res, Floor>;
   @useResult
-  $Res call({String name, List<Room> rooms});
+  $Res call({String id, String name});
 }
 
 /// @nodoc
@@ -49,18 +49,18 @@ class _$FloorCopyWithImpl<$Res, $Val extends Floor>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
-    Object? rooms = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      rooms: null == rooms
-          ? _value.rooms
-          : rooms // ignore: cast_nullable_to_non_nullable
-              as List<Room>,
     ) as $Val);
   }
 }
@@ -71,7 +71,7 @@ abstract class _$$_FloorCopyWith<$Res> implements $FloorCopyWith<$Res> {
       __$$_FloorCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, List<Room> rooms});
+  $Res call({String id, String name});
 }
 
 /// @nodoc
@@ -83,18 +83,18 @@ class __$$_FloorCopyWithImpl<$Res> extends _$FloorCopyWithImpl<$Res, _$_Floor>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
-    Object? rooms = null,
   }) {
     return _then(_$_Floor(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      rooms: null == rooms
-          ? _value._rooms
-          : rooms // ignore: cast_nullable_to_non_nullable
-              as List<Room>,
     ));
   }
 }
@@ -102,27 +102,21 @@ class __$$_FloorCopyWithImpl<$Res> extends _$FloorCopyWithImpl<$Res, _$_Floor>
 /// @nodoc
 @JsonSerializable()
 class _$_Floor implements _Floor {
-  _$_Floor({this.name = "", final List<Room> rooms = const []})
-      : _rooms = rooms;
+  _$_Floor({this.id = "", this.name = ""});
 
   factory _$_Floor.fromJson(Map<String, dynamic> json) =>
       _$$_FloorFromJson(json);
 
   @override
   @JsonKey()
-  final String name;
-  final List<Room> _rooms;
+  final String id;
   @override
   @JsonKey()
-  List<Room> get rooms {
-    if (_rooms is EqualUnmodifiableListView) return _rooms;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_rooms);
-  }
+  final String name;
 
   @override
   String toString() {
-    return 'Floor(name: $name, rooms: $rooms)';
+    return 'Floor(id: $id, name: $name)';
   }
 
   @override
@@ -130,14 +124,13 @@ class _$_Floor implements _Floor {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Floor &&
-            (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other._rooms, _rooms));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, name, const DeepCollectionEquality().hash(_rooms));
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
@@ -154,14 +147,14 @@ class _$_Floor implements _Floor {
 }
 
 abstract class _Floor implements Floor {
-  factory _Floor({final String name, final List<Room> rooms}) = _$_Floor;
+  factory _Floor({final String id, final String name}) = _$_Floor;
 
   factory _Floor.fromJson(Map<String, dynamic> json) = _$_Floor.fromJson;
 
   @override
-  String get name;
+  String get id;
   @override
-  List<Room> get rooms;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_FloorCopyWith<_$_Floor> get copyWith =>

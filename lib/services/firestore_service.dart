@@ -1,14 +1,39 @@
+import 'package:care_mate/data/models/room.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../data/models/bed.dart';
 import '../data/models/floor.dart';
 import '../data/models/patient.dart';
-import '../data/models/room.dart';
 
 class FirestoreService {
   final FirebaseFirestore _firebaseFireStore;
 
   FirestoreService(this._firebaseFireStore);
+
+  Future<bool> checkAdminRights({required User? user}) async {
+    try {
+      final CollectionReference adminsCollectionRef =
+          _firebaseFireStore.collection('admins');
+      final QuerySnapshot snapshot = await adminsCollectionRef.get();
+      final List<QueryDocumentSnapshot> docs = snapshot.docs;
+
+      final List<String> admins = [];
+
+      for (var doc in docs) {
+        final String uuid = doc.id;
+        admins.add(uuid);
+      }
+
+      if (user != null) {
+        return admins.contains(user.uid);
+      } else {
+        return false;
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 
   Future<void> addPatient({
     required Patient patient,
@@ -29,7 +54,20 @@ class FirestoreService {
     }
   }
 
-  Future<List<Patient>> getPatients() async {
+  Stream<List<Patient>> streamPatients() {
+    try {
+      final CollectionReference patientsCollectionRef =
+          _firebaseFireStore.collection('patients');
+      return patientsCollectionRef.orderBy('surname').snapshots().map((event) =>
+          event.docs
+              .map((e) => Patient.fromJson(e.data() as Map<String, dynamic>))
+              .toList());
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /* Future<List<Patient>> getPatients() async {
     try {
       final CollectionReference patientsCollectionRef =
           _firebaseFireStore.collection('patients');
@@ -48,7 +86,6 @@ class FirestoreService {
                 "\nAAAAAAAA:${patient.blood_pressures[0].measurement_time}\n");
           }
           patients.add(patient);
-          // do something with the user data...
         }
       }
       print(patients);
@@ -56,9 +93,22 @@ class FirestoreService {
     } catch (e) {
       rethrow;
     }
+  } */
+
+  Stream<List<Floor>> streamFloors() {
+    try {
+      final CollectionReference floorsCollectionRef =
+          _firebaseFireStore.collection('floors');
+      return floorsCollectionRef.orderBy('name').snapshots().map((event) =>
+          event.docs
+              .map((e) => Floor.fromJson(e.data() as Map<String, dynamic>))
+              .toList());
+    } catch (e) {
+      rethrow;
+    }
   }
 
-  Future<List<String>> getFloors() async {
+/*   Future<List<String>> getFloors() async {
     final List<String> floors = [];
     try {
       final CollectionReference floorsCollectionRef =
@@ -75,9 +125,24 @@ class FirestoreService {
     } catch (e) {
       rethrow;
     }
+  } */
+
+  Stream<List<Room>> streamRooms({required String floorId}) {
+    try {
+      final CollectionReference roomsCollectionRef =
+          _firebaseFireStore.collection('rooms');
+      return roomsCollectionRef
+          .where('floor_id', isEqualTo: floorId)
+          .snapshots()
+          .map((event) => event.docs
+              .map((e) => Room.fromJson(e.data() as Map<String, dynamic>))
+              .toList());
+    } catch (e) {
+      rethrow;
+    }
   }
 
-  Future<List<String>> getRooms({required String floor}) async {
+  /* Future<List<String>> getRooms({required String floor}) async {
     final List<String> rooms = [];
     try {
       final CollectionReference roomsCollectionRef =
@@ -94,7 +159,7 @@ class FirestoreService {
     } catch (e) {
       rethrow;
     }
-  }
+  } */
 
   Future<List<Bed>> getBeds({
     required String floor,
@@ -121,7 +186,7 @@ class FirestoreService {
     }
   }
 
-  Future<List<Floor>> getHospitalLayout() async {
+  /* Future<List<Floor>> getHospitalLayout() async {
     final List<Floor> floors = [];
 
     try {
@@ -169,5 +234,5 @@ class FirestoreService {
     } catch (e) {
       rethrow;
     }
-  }
+  } */
 }

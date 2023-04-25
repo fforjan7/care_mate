@@ -1,9 +1,10 @@
+import 'package:care_mate/data/models/patient.dart';
 import 'package:care_mate/data/providers/patient_search_provider.dart';
+import 'package:care_mate/data/providers/repositories/firestore_repository_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../common/enums/state_enum.dart';
-import '../../../data/providers/patient_get_provider.dart';
 import '../../../utils/app_snackbar.dart';
 import '../../widgets/custom_loading_indicator.dart';
 
@@ -19,7 +20,6 @@ class _PatientSearchViewState extends ConsumerState<PatientSearchView> {
   @override
   Widget build(BuildContext context) {
     var searchProvider = ref.watch(patientSearchProvider);
-    var patientsGetProvider = ref.watch(patientGetProvider);
 
     ref.listen(patientSearchProvider, (previous, next) {
       if (next.appState == AppState.success &&
@@ -46,21 +46,45 @@ class _PatientSearchViewState extends ConsumerState<PatientSearchView> {
 
     return Scaffold(
       appBar: AppBar(title: const Text("Search patient")),
-      body: patientsGetProvider.appState == AppState.loading
-          ? const CustomLoadingIndicator()
-          : ListView.separated(
-              itemCount: patientsGetProvider.patients.length,
-              separatorBuilder: (BuildContext context, int index) =>
-                  const Divider(),
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: Text(patientsGetProvider.patients[index].name),
-                  subtitle: Text(patientsGetProvider.patients[index].surname),
-                  trailing:
-                      Text(patientsGetProvider.patients[index].date_of_birth),
-                );
-              },
-            ),
+      body: StreamBuilder(
+        stream: ref.read(firestoreRepositoryProvider).streamPatients(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final List<Patient> patients =
+                snapshot.data == null ? [] : snapshot.data!;
+            return patients.isEmpty
+                ? const CustomLoadingIndicator()
+                : ListView.separated(
+                    itemCount: patients.length,
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const Divider(),
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTile(
+                        title: Text(
+                            "${patients[index].surname} ${patients[index].name}"),
+                        subtitle: Text(patients[index].date_of_birth),
+                        trailing: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              patients[index].city,
+                              style: TextStyle(color: Colors.grey[600]),
+                            ),
+                            Text(
+                              patients[index].address,
+                              style: TextStyle(color: Colors.grey[600]),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+          } else {
+            return const CustomLoadingIndicator();
+          }
+        },
+      ),
     );
   }
 }
