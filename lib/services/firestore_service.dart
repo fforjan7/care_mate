@@ -43,11 +43,24 @@ class FirestoreService {
           _firebaseFireStore.collection('patients');
       final DocumentReference patientDocRef = patientsCollectionRef.doc();
 
-      print("\n =${patientsCollectionRef.doc().parent.id}\n");
-      print("\n =${patientsCollectionRef.doc().id}\n");
-
       await patientDocRef.set(
         patient.copyWith(id: patientDocRef.id).toJson(),
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> addFloor({
+    required Floor floor,
+  }) async {
+    try {
+      final CollectionReference floorsCollectionRef =
+          _firebaseFireStore.collection('floors');
+      final DocumentReference patientDocRef = floorsCollectionRef.doc();
+
+      await patientDocRef.set(
+        floor.copyWith(id: patientDocRef.id).toJson(),
       );
     } catch (e) {
       rethrow;
