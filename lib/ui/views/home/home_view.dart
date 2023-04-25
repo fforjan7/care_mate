@@ -26,6 +26,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
   @override
   Widget build(BuildContext context) {
     var provider = ref.watch(userProvider);
+    print(provider.isAdmin);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Patients management"),

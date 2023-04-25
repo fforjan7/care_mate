@@ -60,7 +60,7 @@ class _PatientAddViewState extends ConsumerState<PatientAddView> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: CustomTextFormField(
-                          hintText: "Name",
+                          labelText: "Name",
                           onChanged: (value) {
                             ref
                                 .read(patientAddProvider.notifier)
@@ -71,7 +71,7 @@ class _PatientAddViewState extends ConsumerState<PatientAddView> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: CustomTextFormField(
-                          hintText: "Surame",
+                          labelText: "Surame",
                           onChanged: (value) {
                             ref
                                 .read(patientAddProvider.notifier)
@@ -82,7 +82,7 @@ class _PatientAddViewState extends ConsumerState<PatientAddView> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: CustomTextFormField(
-                          hintText: "CHANGE TO DATEPICKER",
+                          labelText: "CHANGE TO DATEPICKER",
                           onChanged: (value) {
                             ref
                                 .read(patientAddProvider.notifier)
@@ -93,7 +93,7 @@ class _PatientAddViewState extends ConsumerState<PatientAddView> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: CustomTextFormField(
-                          hintText: "CHANGE TO DropdownButtonFormField",
+                          labelText: "CHANGE TO DropdownButtonFormField",
                           onChanged: (value) {
                             ref
                                 .read(patientAddProvider.notifier)
@@ -104,7 +104,7 @@ class _PatientAddViewState extends ConsumerState<PatientAddView> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: CustomTextFormField(
-                          hintText: "City",
+                          labelText: "City",
                           onChanged: (value) {
                             ref
                                 .read(patientAddProvider.notifier)
@@ -115,7 +115,7 @@ class _PatientAddViewState extends ConsumerState<PatientAddView> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: CustomTextFormField(
-                          hintText: "Address",
+                          labelText: "Address",
                           onChanged: (value) {
                             ref
                                 .read(patientAddProvider.notifier)

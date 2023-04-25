@@ -1,5 +1,6 @@
 import 'package:care_mate/data/models/floor.dart';
 import 'package:care_mate/data/providers/floors_provider.dart';
+import 'package:care_mate/data/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -17,28 +18,37 @@ class HospitalFloorsView extends ConsumerStatefulWidget {
 class _HospitalFloorsViewState extends ConsumerState<HospitalFloorsView> {
   @override
   Widget build(BuildContext context) {
+    var isAdmin = ref.read(userProvider).isAdmin;
     return Scaffold(
-      appBar: AppBar(title: const Text("Hospital Floors"), actions: [
-        IconButton(
-          icon: const Icon(Icons.add),
-          onPressed: () {
-            showDialog<void>(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  content: CustomPopupForm(
-                      title1: "Floor name",
-                      onChanged1: (value) {
-                        ref.read(floorsProvider.notifier).setName(value);
+      appBar: AppBar(
+        title: const Text("Hospital Floors"),
+        actions: [
+          isAdmin
+              ? IconButton(
+                  icon: const Icon(Icons.add),
+                  onPressed: () {
+                    showDialog<void>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          content: CustomPopupForm(
+                              title1: "Floor name",
+                              onChanged1: (value) {
+                                ref
+                                    .read(floorsProvider.notifier)
+                                    .setName(value);
+                              },
+                              onPressed: () async => await ref
+                                  .read(floorsProvider.notifier)
+                                  .addFloor()),
+                        );
                       },
-                      onPressed: () async =>
-                          await ref.read(floorsProvider.notifier).addFloor()),
-                );
-              },
-            );
-          },
-        ),
-      ]),
+                    );
+                  },
+                )
+              : const SizedBox(),
+        ],
+      ),
       body: StreamBuilder(
         stream: ref.read(firestoreRepositoryProvider).streamFloors(),
         builder: (context, snapshot) {

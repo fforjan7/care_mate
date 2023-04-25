@@ -1,3 +1,4 @@
+import 'package:care_mate/ui/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class CustomPopupForm extends StatelessWidget {
@@ -42,31 +43,25 @@ class CustomPopupForm extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  labelText: title1,
-                ),
+              child: CustomTextFormField(
+                labelText: title1,
                 onChanged: onChanged1,
               ),
             ),
             if (title2 != null && onChanged2 != null)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    labelText: title2,
-                  ),
-                  onChanged: onChanged2,
+                child: CustomTextFormField(
+                  labelText: title2!,
+                  onChanged: onChanged2!,
                 ),
               ),
             if (title3 != null && onChanged3 != null)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    labelText: title3,
-                  ),
-                  onChanged: onChanged3,
+                child: CustomTextFormField(
+                  labelText: title3!,
+                  onChanged: onChanged3!,
                 ),
               ),
             const SizedBox(height: 16.0),
