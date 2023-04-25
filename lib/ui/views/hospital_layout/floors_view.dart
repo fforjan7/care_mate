@@ -1,4 +1,5 @@
 import 'package:care_mate/data/models/floor.dart';
+import 'package:care_mate/data/providers/floors_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,12 +25,14 @@ class _HospitalFloorsViewState extends ConsumerState<HospitalFloorsView> {
             showDialog<void>(
               context: context,
               builder: (BuildContext context) {
-                return const AlertDialog(
+                return AlertDialog(
                   content: CustomPopupForm(
-                    title1: "1",
-                    title2: "2",
-                    title3: "3",
-                  ),
+                      title1: "Floor name",
+                      onChanged1: (value) {
+                        ref.read(floorsProvider.notifier).setName(value);
+                      },
+                      onPressed: () async =>
+                          await ref.read(floorsProvider.notifier).addFloor()),
                 );
               },
             );

@@ -19,6 +19,10 @@ class FirestoreRepository {
     await _firestoreService.addPatient(patient: patient);
   }
 
+  Future<void> addFloor({required Floor floor}) async {
+    return await _firestoreService.addFloor(floor: floor);
+  }
+
   Stream<List<Patient>> streamPatients() {
     return _firestoreService.streamPatients();
   }
