@@ -1,8 +1,9 @@
 import 'dart:async';
 
-import 'package:care_mate/data/providers/auth/login_provider.dart';
+import 'package:care_mate/data/providers/login_provider.dart';
 import 'package:care_mate/ui/views/login/widgets/auth_form_field.dart';
 import 'package:care_mate/ui/widgets/custom_loading_indicator.dart';
+import 'package:care_mate/utils/validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,7 +11,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../common/enums/constants/routes.dart';
 import '../../../common/enums/state_enum.dart';
-import '../../../data/providers/auth/navigation_provider.dart';
+
 import '../../../utils/app_snackbar.dart';
 
 class LoginView extends ConsumerStatefulWidget {
@@ -42,7 +43,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
       if (next.appState == AppState.success &&
           previous?.appState == AppState.loading) {
         ref.read(loginProvider.notifier).setInitialState();
-        ref.read(navigationProvider.notifier).state = AppRoutes.home;
+        //ref.read(navigationProvider.notifier).state = AppRoutes.home;
         ref.read(loginProvider.notifier).clearEmail();
         ref.read(loginProvider.notifier).clearPassword();
         GoRouter.of(context).go(AppRoutes.home);
@@ -80,6 +81,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                         onChanged: (value) {
                           ref.read(loginProvider.notifier).setEmail(value);
                         },
+                        inputType: InputType.email,
                       ),
                     ),
                     Padding(
@@ -88,16 +90,18 @@ class _LoginViewState extends ConsumerState<LoginView> {
                         onChanged: (value) {
                           ref.read(loginProvider.notifier).setPassword(value);
                         },
-                        isObscured: true,
+                        inputType: InputType.password,
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: ElevatedButton(
                         onPressed: () {
-                          ref
-                              .read(loginProvider.notifier)
-                              .signInWithEmailAndPassword();
+                          if (_formKey.currentState!.validate()) {
+                            ref
+                                .read(loginProvider.notifier)
+                                .signInWithEmailAndPassword();
+                          }
                         },
                         child: const Text("Login"),
                       ),

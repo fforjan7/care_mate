@@ -1,6 +1,10 @@
-import 'package:care_mate/ui/views/discovery/discovery_view.dart';
+import 'package:care_mate/ui/views/hospital_layout/floors_view.dart';
+import 'package:care_mate/ui/views/settings/settings_view.dart';
+import 'package:care_mate/ui/views/nfc/nfc_view.dart';
 import 'package:care_mate/ui/views/home/home_view.dart';
 import 'package:care_mate/ui/views/login/login_view.dart';
+import 'package:care_mate/ui/views/patient_add/patient_add_view.dart';
+import 'package:care_mate/ui/views/patient_search/patient_search_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
@@ -15,12 +19,17 @@ void main() async {
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Firebase.initializeApp();
 
-  runApp(ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({super.key});
+class MyApp extends ConsumerStatefulWidget {
+  const MyApp({super.key});
 
+  @override
+  ConsumerState<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends ConsumerState<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
@@ -47,9 +56,33 @@ class MyApp extends StatelessWidget {
         },
       ),
       GoRoute(
-        path: AppRoutes.discovery,
+        path: AppRoutes.settings,
         builder: (BuildContext context, GoRouterState state) {
-          return const DiscoveryView();
+          return const SettingsView();
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.nfc,
+        builder: (BuildContext context, GoRouterState state) {
+          return const NfcView();
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.patientAdd,
+        builder: (BuildContext context, GoRouterState state) {
+          return const PatientAddView();
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.patientSearch,
+        builder: (BuildContext context, GoRouterState state) {
+          return const PatientSearchView();
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.hospitalFLoors,
+        builder: (BuildContext context, GoRouterState state) {
+          return const HospitalFloorsView();
         },
       ),
     ],

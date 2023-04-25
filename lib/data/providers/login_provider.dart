@@ -1,6 +1,6 @@
 import 'package:care_mate/common/enums/state_enum.dart';
 import 'package:care_mate/data/models/state/login_state.dart';
-import 'package:care_mate/data/providers/auth/auth_repository_provider.dart';
+import 'package:care_mate/data/providers/repositories/auth_repository_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod/riverpod.dart';
 
