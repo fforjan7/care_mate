@@ -7,4 +7,6 @@ abstract class AppRoutes {
   static const String patientAdd = '/patientAdd';
   static const String patientSearch = '/patientsList';
   static const String hospitalFLoors = '/hospitalFLoors';
+  static const String hospitalRooms = '/hospitalRooms';
+  static const String hospitalBeds = '/hospitalBeds';
 }

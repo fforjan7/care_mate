@@ -6,7 +6,6 @@ part 'bed.g.dart';
 @freezed
 class Bed with _$Bed {
   const factory Bed({
-    @JsonKey(name: "floor_id") @Default("") String floorId,
     @Default("") String id,
     @Default("") String name,
     @JsonKey(name: "patient_id") @Default("") String patientId,

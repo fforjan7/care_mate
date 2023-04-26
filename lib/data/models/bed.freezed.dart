@@ -20,8 +20,6 @@ Bed _$BedFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Bed {
-  @JsonKey(name: "floor_id")
-  String get floorId => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: "patient_id")
@@ -40,8 +38,7 @@ abstract class $BedCopyWith<$Res> {
       _$BedCopyWithImpl<$Res, Bed>;
   @useResult
   $Res call(
-      {@JsonKey(name: "floor_id") String floorId,
-      String id,
+      {String id,
       String name,
       @JsonKey(name: "patient_id") String patientId,
       @JsonKey(name: "room_id") String roomId});
@@ -59,17 +56,12 @@ class _$BedCopyWithImpl<$Res, $Val extends Bed> implements $BedCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? floorId = null,
     Object? id = null,
     Object? name = null,
     Object? patientId = null,
     Object? roomId = null,
   }) {
     return _then(_value.copyWith(
-      floorId: null == floorId
-          ? _value.floorId
-          : floorId // ignore: cast_nullable_to_non_nullable
-              as String,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -97,8 +89,7 @@ abstract class _$$_BedCopyWith<$Res> implements $BedCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "floor_id") String floorId,
-      String id,
+      {String id,
       String name,
       @JsonKey(name: "patient_id") String patientId,
       @JsonKey(name: "room_id") String roomId});
@@ -113,17 +104,12 @@ class __$$_BedCopyWithImpl<$Res> extends _$BedCopyWithImpl<$Res, _$_Bed>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? floorId = null,
     Object? id = null,
     Object? name = null,
     Object? patientId = null,
     Object? roomId = null,
   }) {
     return _then(_$_Bed(
-      floorId: null == floorId
-          ? _value.floorId
-          : floorId // ignore: cast_nullable_to_non_nullable
-              as String,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -148,17 +134,13 @@ class __$$_BedCopyWithImpl<$Res> extends _$BedCopyWithImpl<$Res, _$_Bed>
 @JsonSerializable()
 class _$_Bed implements _Bed {
   const _$_Bed(
-      {@JsonKey(name: "floor_id") this.floorId = "",
-      this.id = "",
+      {this.id = "",
       this.name = "",
       @JsonKey(name: "patient_id") this.patientId = "",
       @JsonKey(name: "room_id") this.roomId = ""});
 
   factory _$_Bed.fromJson(Map<String, dynamic> json) => _$$_BedFromJson(json);
 
-  @override
-  @JsonKey(name: "floor_id")
-  final String floorId;
   @override
   @JsonKey()
   final String id;
@@ -174,7 +156,7 @@ class _$_Bed implements _Bed {
 
   @override
   String toString() {
-    return 'Bed(floorId: $floorId, id: $id, name: $name, patientId: $patientId, roomId: $roomId)';
+    return 'Bed(id: $id, name: $name, patientId: $patientId, roomId: $roomId)';
   }
 
   @override
@@ -182,7 +164,6 @@ class _$_Bed implements _Bed {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Bed &&
-            (identical(other.floorId, floorId) || other.floorId == floorId) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.patientId, patientId) ||
@@ -192,8 +173,7 @@ class _$_Bed implements _Bed {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, floorId, id, name, patientId, roomId);
+  int get hashCode => Object.hash(runtimeType, id, name, patientId, roomId);
 
   @JsonKey(ignore: true)
   @override
@@ -211,17 +191,13 @@ class _$_Bed implements _Bed {
 
 abstract class _Bed implements Bed {
   const factory _Bed(
-      {@JsonKey(name: "floor_id") final String floorId,
-      final String id,
+      {final String id,
       final String name,
       @JsonKey(name: "patient_id") final String patientId,
       @JsonKey(name: "room_id") final String roomId}) = _$_Bed;
 
   factory _Bed.fromJson(Map<String, dynamic> json) = _$_Bed.fromJson;
 
-  @override
-  @JsonKey(name: "floor_id")
-  String get floorId;
   @override
   String get id;
   @override

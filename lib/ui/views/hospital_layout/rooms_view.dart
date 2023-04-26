@@ -1,8 +1,14 @@
 import 'package:care_mate/data/models/floor.dart';
+import 'package:care_mate/data/models/room.dart';
+import 'package:care_mate/data/providers/rooms_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../common/enums/constants/routes.dart';
 import '../../../data/providers/repositories/firestore_repository_provider.dart';
+import '../../../data/providers/user_provider.dart';
+import '../../widgets/custom_Popup.dart';
 import '../../widgets/custom_loading_indicator.dart';
 
 class HospitalRoomsView extends ConsumerStatefulWidget {
@@ -15,22 +21,60 @@ class HospitalRoomsView extends ConsumerStatefulWidget {
 class _HospitalRoomsViewState extends ConsumerState<HospitalRoomsView> {
   @override
   Widget build(BuildContext context) {
+    var isAdmin = ref.read(userProvider).isAdmin;
+    final floorJson = GoRouterState.of(context).extra as Map<String, dynamic>;
+    final floor = Floor.fromJson(floorJson);
     return Scaffold(
-      appBar: AppBar(title: const Text("Hospital Rooms")),
+      appBar: AppBar(
+        title: const Text("Hospital Rooms"),
+        actions: [
+          isAdmin
+              ? IconButton(
+                  icon: const Icon(Icons.add),
+                  onPressed: () {
+                    showDialog<void>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                            content: CustomPopupForm(
+                          title1: "Room name",
+                          onChanged1: (value) {
+                            ref.read(roomsProvider.notifier).setName(value);
+                          },
+                          onPressed: () async => await ref
+                              .read(roomsProvider.notifier)
+                              .addRoom(floor: floor),
+                        ));
+                      },
+                    );
+                  },
+                )
+              : const SizedBox(),
+        ],
+      ),
       body: StreamBuilder(
-        stream: ref.read(firestoreRepositoryProvider).streamFloors(),
+        stream: ref.read(firestoreRepositoryProvider).streamRooms(floor: floor),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            final List<Floor> floors = snapshot.data!;
-            return floors.isEmpty
-                ? const CustomLoadingIndicator()
+            final List<Room> rooms = snapshot.data!;
+            return rooms.isEmpty
+                ? const Center(
+                    child: Text("There are no current rooms on this floor"))
                 : ListView.separated(
-                    itemCount: floors.length,
+                    itemCount: rooms.length,
                     separatorBuilder: (BuildContext context, int index) =>
                         const Divider(),
                     itemBuilder: (BuildContext context, int index) {
-                      return ListTile(
-                        title: Text(floors[index].name),
+                      return GestureDetector(
+                        onTap: () {
+                          GoRouter.of(context).push(
+                            AppRoutes.hospitalBeds,
+                            extra: rooms[index].toJson(),
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(rooms[index].name),
+                        ),
                       );
                     },
                   );

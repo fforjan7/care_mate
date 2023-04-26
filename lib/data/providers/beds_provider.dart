@@ -1,13 +1,14 @@
-import 'package:care_mate/common/enums/state_enum.dart';
-import 'package:care_mate/data/models/state/floors_state.dart';
+import 'package:care_mate/data/models/bed.dart';
+import 'package:care_mate/data/models/room.dart';
+import 'package:care_mate/data/models/state/beds_state.dart';
 import 'package:care_mate/data/providers/repositories/firestore_repository_provider.dart';
-import 'package:riverpod/riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../models/floor.dart';
+import '../../common/enums/state_enum.dart';
 
-class FloorsNotifier extends StateNotifier<FloorsState> {
-  FloorsNotifier(this.ref) : super(const FloorsState());
-  final Ref ref;
+class BedsNotifier extends StateNotifier<BedsState> {
+  BedsNotifier(this.ref) : super(const BedsState());
+  Ref ref;
 
   void setName(String name) {
     state = state.copyWith(name: name);
@@ -21,12 +22,12 @@ class FloorsNotifier extends StateNotifier<FloorsState> {
     state = state.copyWith(error: '', appState: AppState.initial);
   }
 
-  Future<void> addFloor() async {
+  Future<void> addBed({required Room room}) async {
     state = state.copyWith(appState: AppState.loading);
     try {
       await ref
           .read(firestoreRepositoryProvider)
-          .addFloor(floor: Floor(name: state.name));
+          .addBed(bed: Bed(name: state.name, roomId: room.id));
     } catch (e) {
       state = state.copyWith(appState: AppState.error, error: e.toString());
     }
@@ -35,7 +36,7 @@ class FloorsNotifier extends StateNotifier<FloorsState> {
   }
 }
 
-final floorsProvider =
-    StateNotifierProvider.autoDispose<FloorsNotifier, FloorsState>((ref) {
-  return FloorsNotifier(ref);
+final bedsProvider =
+    StateNotifierProvider.autoDispose<BedsNotifier, BedsState>((ref) {
+  return BedsNotifier(ref);
 });

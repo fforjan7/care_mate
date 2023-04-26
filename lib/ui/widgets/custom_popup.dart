@@ -23,68 +23,73 @@ class CustomPopupForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
     return SingleChildScrollView(
-      child: Container(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).viewInsets.bottom,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Text(
-                'Enter details:',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
+      child: Form(
+        key: formKey,
+        child: Container(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'Enter details:',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.0,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: CustomTextFormField(
-                labelText: title1,
-                onChanged: onChanged1,
-              ),
-            ),
-            if (title2 != null && onChanged2 != null)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: CustomTextFormField(
-                  labelText: title2!,
-                  onChanged: onChanged2!,
+                  labelText: title1,
+                  onChanged: onChanged1,
                 ),
               ),
-            if (title3 != null && onChanged3 != null)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: CustomTextFormField(
-                  labelText: title3!,
-                  onChanged: onChanged3!,
+              if (title2 != null && onChanged2 != null)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: CustomTextFormField(
+                    labelText: title2!,
+                    onChanged: onChanged2!,
+                  ),
                 ),
+              if (title3 != null && onChanged3 != null)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: CustomTextFormField(
+                    labelText: title3!,
+                    onChanged: onChanged3!,
+                  ),
+                ),
+              const SizedBox(height: 16.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  TextButton(
+                    child: const Text('Cancel'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text('Add'),
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        onPressed();
+                        Navigator.of(context).pop();
+                      }
+                    },
+                  ),
+                ],
               ),
-            const SizedBox(height: 16.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                TextButton(
-                  child: const Text('Cancel'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-                ElevatedButton(
-                  child: const Text('Add'),
-                  onPressed: () {
-                    // Add item logic here
-                    onPressed();
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

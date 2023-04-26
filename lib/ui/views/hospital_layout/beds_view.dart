@@ -1,30 +1,31 @@
-import 'package:care_mate/common/enums/constants/routes.dart';
-import 'package:care_mate/data/models/floor.dart';
-import 'package:care_mate/data/providers/floors_provider.dart';
+import 'package:care_mate/data/models/bed.dart';
+import 'package:care_mate/data/providers/beds_provider.dart';
 import 'package:care_mate/data/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../data/models/room.dart';
 import '../../../data/providers/repositories/firestore_repository_provider.dart';
 import '../../widgets/custom_Popup.dart';
 import '../../widgets/custom_loading_indicator.dart';
 
-class HospitalFloorsView extends ConsumerStatefulWidget {
-  const HospitalFloorsView({super.key});
+class HospitalBedsView extends ConsumerStatefulWidget {
+  const HospitalBedsView({super.key});
 
   @override
-  ConsumerState<HospitalFloorsView> createState() => _HospitalFloorsViewState();
+  ConsumerState<HospitalBedsView> createState() => _HospitalBedsViewState();
 }
 
-class _HospitalFloorsViewState extends ConsumerState<HospitalFloorsView> {
+class _HospitalBedsViewState extends ConsumerState<HospitalBedsView> {
   @override
   Widget build(BuildContext context) {
     var isAdmin = ref.read(userProvider).isAdmin;
-    var provider = ref.watch(floorsProvider);
+    final roomJson = GoRouterState.of(context).extra as Map<String, dynamic>;
+    final room = Room.fromJson(roomJson);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Hospital Floors"),
+        title: const Text("Hospital Beds"),
         actions: [
           isAdmin
               ? IconButton(
@@ -34,17 +35,15 @@ class _HospitalFloorsViewState extends ConsumerState<HospitalFloorsView> {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          content: CustomPopupForm(
-                              title1: "Floor name",
-                              onChanged1: (value) {
-                                ref
-                                    .read(floorsProvider.notifier)
-                                    .setName(value);
-                              },
-                              onPressed: () async => await ref
-                                  .read(floorsProvider.notifier)
-                                  .addFloor()),
-                        );
+                            content: CustomPopupForm(
+                          title1: "Bed name",
+                          onChanged1: (value) {
+                            ref.read(bedsProvider.notifier).setName(value);
+                          },
+                          onPressed: () async => await ref
+                              .read(bedsProvider.notifier)
+                              .addBed(room: room),
+                        ));
                       },
                     );
                   },
@@ -53,26 +52,25 @@ class _HospitalFloorsViewState extends ConsumerState<HospitalFloorsView> {
         ],
       ),
       body: StreamBuilder(
-        stream: ref.read(firestoreRepositoryProvider).streamFloors(),
+        stream: ref.read(firestoreRepositoryProvider).streamBeds(room: room),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            final List<Floor> floors = snapshot.data!;
-            return floors.isEmpty
+            final List<Bed> beds = snapshot.data!;
+            return beds.isEmpty
                 ? const Center(
-                    child: Text("There are no current floors"),
+                    child: Text("There are no current beds in this room"),
                   )
                 : ListView.separated(
-                    itemCount: floors.length,
+                    itemCount: beds.length,
                     separatorBuilder: (BuildContext context, int index) =>
                         const Divider(),
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () {
-                          GoRouter.of(context).push(AppRoutes.hospitalRooms,
-                              extra: floors[index].toJson());
+                          //Add GoRouter to patients TAB screen
                         },
                         child: ListTile(
-                          title: Text(floors[index].name),
+                          title: Text(beds[index].name),
                         ),
                       );
                     },

@@ -70,6 +70,7 @@ class PatientAddNotifier extends StateNotifier<PatientAddState> {
 }
 
 final patientAddProvider =
-    StateNotifierProvider<PatientAddNotifier, PatientAddState>((ref) {
+    StateNotifierProvider.autoDispose<PatientAddNotifier, PatientAddState>(
+        (ref) {
   return PatientAddNotifier(ref);
 });

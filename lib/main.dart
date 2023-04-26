@@ -1,4 +1,6 @@
+import 'package:care_mate/ui/views/hospital_layout/beds_view.dart';
 import 'package:care_mate/ui/views/hospital_layout/floors_view.dart';
+import 'package:care_mate/ui/views/hospital_layout/rooms_view.dart';
 import 'package:care_mate/ui/views/settings/settings_view.dart';
 import 'package:care_mate/ui/views/nfc/nfc_view.dart';
 import 'package:care_mate/ui/views/home/home_view.dart';
@@ -83,6 +85,18 @@ class _MyAppState extends ConsumerState<MyApp> {
         path: AppRoutes.hospitalFLoors,
         builder: (BuildContext context, GoRouterState state) {
           return const HospitalFloorsView();
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.hospitalRooms,
+        builder: (BuildContext context, GoRouterState state) {
+          return const HospitalRoomsView();
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.hospitalBeds,
+        builder: (BuildContext context, GoRouterState state) {
+          return const HospitalBedsView();
         },
       ),
     ],

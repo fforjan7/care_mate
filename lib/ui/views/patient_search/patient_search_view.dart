@@ -16,11 +16,11 @@ class PatientSearchView extends ConsumerStatefulWidget {
 }
 
 class _PatientSearchViewState extends ConsumerState<PatientSearchView> {
-  @override
+  final _focusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     var searchProvider = ref.watch(patientSearchProvider);
-
     ref.listen(patientSearchProvider, (previous, next) {
       if (next.appState == AppState.success &&
           previous?.appState == AppState.loading) {
@@ -45,34 +45,63 @@ class _PatientSearchViewState extends ConsumerState<PatientSearchView> {
     });
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Search patient")),
+      appBar: AppBar(
+        title: TextFormField(
+          focusNode: _focusNode,
+          style: const TextStyle(color: Colors.white),
+          cursorColor: Colors.white,
+          decoration: const InputDecoration(
+            labelText: "Search patients",
+            labelStyle: TextStyle(color: Colors.white),
+          ),
+          onChanged: (value) {
+            ref.read(patientSearchProvider.notifier).setSearchInput(value);
+          },
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 15.0),
+            child: IconButton(
+              onPressed: () {
+                _focusNode.requestFocus();
+              },
+              icon: const Icon(Icons.search),
+            ),
+          )
+        ],
+      ),
       body: StreamBuilder(
-        stream: ref.read(firestoreRepositoryProvider).streamPatients(),
+        stream: ref.read(firestoreRepositoryProvider).streamPatients(
+              searchInput: searchProvider.searchInput,
+            ),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final List<Patient> patients =
                 snapshot.data == null ? [] : snapshot.data!;
-            return patients.isEmpty
+            final List<Patient> filteredPatients = ref
+                .read(patientSearchProvider.notifier)
+                .filterPatients(patients: patients);
+            return filteredPatients.isEmpty
                 ? const CustomLoadingIndicator()
                 : ListView.separated(
-                    itemCount: patients.length,
+                    itemCount: filteredPatients.length,
                     separatorBuilder: (BuildContext context, int index) =>
                         const Divider(),
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
                         title: Text(
-                            "${patients[index].surname} ${patients[index].name}"),
-                        subtitle: Text(patients[index].date_of_birth),
+                            "${filteredPatients[index].surname} ${filteredPatients[index].name}"),
+                        subtitle: Text(filteredPatients[index].date_of_birth),
                         trailing: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              patients[index].city,
+                              filteredPatients[index].city,
                               style: TextStyle(color: Colors.grey[600]),
                             ),
                             Text(
-                              patients[index].address,
+                              filteredPatients[index].address,
                               style: TextStyle(color: Colors.grey[600]),
                             ),
                           ],
