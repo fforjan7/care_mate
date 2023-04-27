@@ -18,7 +18,10 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       onChanged: onChanged,
       initialValue: initialValue,
-      decoration: InputDecoration(labelText: labelText),
+      decoration: InputDecoration(
+        labelText: labelText,
+        border: const OutlineInputBorder(),
+      ),
       validator: (value) {
         return value!.isEmpty ? "This field cannot be empty" : null;
       },

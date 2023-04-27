@@ -1,5 +1,6 @@
 import 'package:care_mate/data/providers/patient_add_provider.dart';
 import 'package:care_mate/ui/widgets/custom_text_form_field.dart';
+import 'package:care_mate/utils/custom_text_form_field_date_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -22,7 +23,7 @@ class _PatientAddViewState extends ConsumerState<PatientAddView> {
   @override
   Widget build(BuildContext context) {
     var provider = ref.watch(patientAddProvider);
-
+    print(provider.date_of_birth);
     ref.listen(patientAddProvider, (previous, next) {
       if (next.appState == AppState.success &&
           previous?.appState == AppState.loading) {
@@ -81,13 +82,11 @@ class _PatientAddViewState extends ConsumerState<PatientAddView> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: CustomTextFormField(
-                          labelText: "CHANGE TO DATEPICKER",
-                          onChanged: (value) {
-                            ref
-                                .read(patientAddProvider.notifier)
-                                .setDateOfBirth(value);
-                          },
+                        child: CustomTextFormFieldDatePicker(
+                          initialValueString: provider.date_of_birth,
+                          setDate: ref
+                              .read(patientAddProvider.notifier)
+                              .setDateOfBirth,
                         ),
                       ),
                       Padding(

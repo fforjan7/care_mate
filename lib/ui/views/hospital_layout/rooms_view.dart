@@ -22,6 +22,7 @@ class _HospitalRoomsViewState extends ConsumerState<HospitalRoomsView> {
   @override
   Widget build(BuildContext context) {
     var isAdmin = ref.read(userProvider).isAdmin;
+    var provider = ref.watch(roomsProvider);
     final floorJson = GoRouterState.of(context).extra as Map<String, dynamic>;
     final floor = Floor.fromJson(floorJson);
     return Scaffold(
