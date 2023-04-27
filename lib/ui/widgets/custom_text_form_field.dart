@@ -3,13 +3,13 @@ import 'package:flutter/services.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
-    required this.onChanged,
+    this.onChanged,
     required this.labelText,
     this.initialValue,
     super.key,
   });
 
-  final Function(String) onChanged;
+  final Function(String)? onChanged;
   final String labelText;
   final String? initialValue;
 
@@ -18,6 +18,9 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       onChanged: onChanged,
       initialValue: initialValue,
+      enabled: onChanged == null ? false : true,
+      style:
+          TextStyle(color: onChanged == null ? Colors.grey[400] : Colors.black),
       decoration: InputDecoration(
         labelText: labelText,
         border: const OutlineInputBorder(),

@@ -20,6 +20,10 @@ class FirestoreRepository {
     await _firestoreService.addPatient(patient: patient);
   }
 
+  Future<void> updatePatient({required Patient patient}) async {
+    await _firestoreService.updatePatient(patient: patient);
+  }
+
   Future<void> addFloor({required Floor floor}) async {
     return await _firestoreService.addFloor(floor: floor);
   }

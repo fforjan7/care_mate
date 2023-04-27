@@ -3,12 +3,12 @@ import 'package:intl/intl.dart';
 
 class CustomTextFormFieldDatePicker extends StatefulWidget {
   const CustomTextFormFieldDatePicker({
-    required this.setDate,
+    this.setDate,
     this.initialValueString = "",
     super.key,
   });
 
-  final Function(String) setDate;
+  final Function(String)? setDate;
   final String initialValueString;
 
   @override
@@ -23,6 +23,7 @@ class _CustomTextFormFieldDatePickerState
   @override
   void initState() {
     super.initState();
+    _dateController.text = widget.initialValueString;
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -38,7 +39,7 @@ class _CustomTextFormFieldDatePickerState
     if (picked != null) {
       setState(() {
         _dateController.text = DateFormat('dd/MM/yyyy').format(picked);
-        widget.setDate(_dateController.text);
+        widget.setDate!(_dateController.text);
       });
     }
   }
@@ -48,11 +49,17 @@ class _CustomTextFormFieldDatePickerState
     return TextFormField(
       controller: _dateController,
       readOnly: true,
+      enabled: widget.setDate != null ? true : false,
       onTap: () {
         _selectDate(context);
       },
+      style: TextStyle(
+          color: widget.setDate == null ? Colors.grey[400] : Colors.black),
       decoration: const InputDecoration(
-        hintText: 'Select date',
+        hintText: /*  widget.initialValueString != ""
+            ? widget.initialValueString
+            :  */
+            'Select date',
         border: OutlineInputBorder(),
         suffixIcon: Icon(Icons.calendar_today),
       ),

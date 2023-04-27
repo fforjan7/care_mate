@@ -51,6 +51,21 @@ class FirestoreService {
     }
   }
 
+  Future<void> updatePatient({
+    required Patient patient,
+  }) async {
+    try {
+      final CollectionReference patientsCollectionRef =
+          _firebaseFireStore.collection('patients');
+      final DocumentReference patientDocRef =
+          patientsCollectionRef.doc(patient.id);
+
+      await patientDocRef.update(patient.toJson());
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<void> addFloor({
     required Floor floor,
   }) async {
@@ -168,12 +183,12 @@ class FirestoreService {
 
       for (var doc in docs) {
         final String bedId = doc.id;
-        print(doc.id);
+
         final String patientId = doc.get("patient_id");
         final Bed bed = Bed(name: bedId, patientId: patientId);
         beds.add(bed);
       }
-      print(beds);
+
       return beds;
     } catch (e) {
       rethrow;

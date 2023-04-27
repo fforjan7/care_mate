@@ -23,7 +23,7 @@ class _PatientAddViewState extends ConsumerState<PatientAddView> {
   @override
   Widget build(BuildContext context) {
     var provider = ref.watch(patientAddProvider);
-    print(provider.date_of_birth);
+
     ref.listen(patientAddProvider, (previous, next) {
       if (next.appState == AppState.success &&
           previous?.appState == AppState.loading) {

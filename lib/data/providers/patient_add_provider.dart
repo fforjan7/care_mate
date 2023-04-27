@@ -5,8 +5,8 @@ import '../../common/enums/state_enum.dart';
 import '../models/patient.dart';
 import '../models/state/patient_add_state.dart';
 
-class PatientAddNotifier extends StateNotifier<PatientAddState> {
-  PatientAddNotifier(this.ref) : super(const PatientAddState());
+class PatientAddNotifier extends StateNotifier<PatientState> {
+  PatientAddNotifier(this.ref) : super(const PatientState());
   final Ref ref;
 
   void setAddress(String address) {
@@ -49,7 +49,6 @@ class PatientAddNotifier extends StateNotifier<PatientAddState> {
   Future<void> patientAdd() async {
     state = state.copyWith(appState: AppState.loading);
     try {
-      print("IME: ${state.name}");
       await ref.read(firestoreRepositoryProvider).addPatient(
               patient: Patient(
             address: state.address,
@@ -60,8 +59,6 @@ class PatientAddNotifier extends StateNotifier<PatientAddState> {
             surname: state.surname,
           ));
     } catch (e) {
-      print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-      print(e.toString());
       state = state.copyWith(appState: AppState.error, error: e.toString());
     }
     state = state.copyWith(appState: AppState.success);
@@ -70,7 +67,6 @@ class PatientAddNotifier extends StateNotifier<PatientAddState> {
 }
 
 final patientAddProvider =
-    StateNotifierProvider.autoDispose<PatientAddNotifier, PatientAddState>(
-        (ref) {
+    StateNotifierProvider.autoDispose<PatientAddNotifier, PatientState>((ref) {
   return PatientAddNotifier(ref);
 });

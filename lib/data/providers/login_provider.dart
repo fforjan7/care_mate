@@ -31,15 +31,11 @@ class LoginNotifier extends StateNotifier<LoginState> {
   Future<String?> signInWithEmailAndPassword() async {
     state = state.copyWith(appState: AppState.loading);
     try {
-      print("email: ${state.email}");
-      print("password: ${state.password}");
       String? res =
           await ref.read(authRepositoryProvider).signInWithEmailAndPassword(
                 email: state.email,
                 password: state.password,
               );
-
-      print("RES: $res");
     } catch (e) {
       state = state.copyWith(appState: AppState.error, error: e.toString());
     }

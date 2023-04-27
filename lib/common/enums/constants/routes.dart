@@ -5,6 +5,7 @@ abstract class AppRoutes {
   static const String settings = '/settings';
   static const String nfc = '/nfc';
   static const String patientAdd = '/patientAdd';
+  static const String patientTabs = '/patientTabs';
   static const String patientSearch = '/patientsList';
   static const String hospitalFLoors = '/hospitalFLoors';
   static const String hospitalRooms = '/hospitalRooms';

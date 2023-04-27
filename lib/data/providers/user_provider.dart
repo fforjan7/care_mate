@@ -18,7 +18,6 @@ class UserNotifier extends StateNotifier<UserState> {
               .read(firestoreRepositoryProvider)
               .checkAdminRights(user: user));
     } catch (e) {
-      print(e.toString());
       state = state.copyWith(appState: AppState.error, error: e.toString());
     }
     state = state.copyWith(appState: AppState.success);

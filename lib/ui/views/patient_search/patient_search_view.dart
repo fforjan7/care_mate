@@ -1,8 +1,10 @@
+import 'package:care_mate/common/enums/constants/routes.dart';
 import 'package:care_mate/data/models/patient.dart';
 import 'package:care_mate/data/providers/patient_search_provider.dart';
 import 'package:care_mate/data/providers/repositories/firestore_repository_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../common/enums/state_enum.dart';
 import '../../../utils/app_snackbar.dart';
@@ -88,23 +90,29 @@ class _PatientSearchViewState extends ConsumerState<PatientSearchView> {
                     separatorBuilder: (BuildContext context, int index) =>
                         const Divider(),
                     itemBuilder: (BuildContext context, int index) {
-                      return ListTile(
-                        title: Text(
-                            "${filteredPatients[index].surname} ${filteredPatients[index].name}"),
-                        subtitle: Text(filteredPatients[index].date_of_birth),
-                        trailing: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              filteredPatients[index].city,
-                              style: TextStyle(color: Colors.grey[600]),
-                            ),
-                            Text(
-                              filteredPatients[index].address,
-                              style: TextStyle(color: Colors.grey[600]),
-                            ),
-                          ],
+                      return GestureDetector(
+                        onTap: () {
+                          GoRouter.of(context).push(AppRoutes.patientTabs,
+                              extra: filteredPatients[index].toJson());
+                        },
+                        child: ListTile(
+                          title: Text(
+                              "${filteredPatients[index].surname} ${filteredPatients[index].name}"),
+                          subtitle: Text(filteredPatients[index].date_of_birth),
+                          trailing: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                filteredPatients[index].city,
+                                style: TextStyle(color: Colors.grey[600]),
+                              ),
+                              Text(
+                                filteredPatients[index].address,
+                                style: TextStyle(color: Colors.grey[600]),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
