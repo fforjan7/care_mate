@@ -69,44 +69,65 @@ class _LoginViewState extends ConsumerState<LoginView> {
       ),
       body: provider.appState == AppState.loading
           ? const CustomLoadingIndicator()
-          : Form(
-              key: _formKey,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: AuthFormField(
-                        onChanged: (value) {
-                          ref.read(loginProvider.notifier).setEmail(value);
-                        },
-                        inputType: InputType.email,
+          : SingleChildScrollView(
+              child: Form(
+                key: _formKey,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(top: 70.0),
+                        child: Text(
+                          "Welcome to Care mate",
+                          style: TextStyle(
+                              color: Colors.blue,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w800),
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: AuthFormField(
-                        onChanged: (value) {
-                          ref.read(loginProvider.notifier).setPassword(value);
-                        },
-                        inputType: InputType.password,
+                      const SizedBox(height: 70),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 8.0,
+                          horizontal: 20,
+                        ),
+                        child: AuthFormField(
+                          labelText: "Email",
+                          onChanged: (value) {
+                            ref.read(loginProvider.notifier).setEmail(value);
+                          },
+                          inputType: InputType.email,
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            ref
-                                .read(loginProvider.notifier)
-                                .signInWithEmailAndPassword();
-                          }
-                        },
-                        child: const Text("Login"),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 8.0,
+                          horizontal: 20,
+                        ),
+                        child: AuthFormField(
+                          labelText: "Password",
+                          onChanged: (value) {
+                            ref.read(loginProvider.notifier).setPassword(value);
+                          },
+                          inputType: InputType.password,
+                        ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              ref
+                                  .read(loginProvider.notifier)
+                                  .signInWithEmailAndPassword();
+                            }
+                          },
+                          child: const Text("Login"),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

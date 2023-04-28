@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -60,6 +59,7 @@ class _CustomTextFormFieldDatePickerState
         labelText: 'Date of birth',
         border: OutlineInputBorder(),
         suffixIcon: Icon(Icons.calendar_today),
+        errorStyle: TextStyle(height: 0.3),
       ),
       validator: (value) {
         return value!.isEmpty ? "This field cannot be empty" : null;

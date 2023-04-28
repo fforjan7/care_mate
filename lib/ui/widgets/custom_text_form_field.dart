@@ -24,6 +24,7 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: labelText,
         border: const OutlineInputBorder(),
+        errorStyle: const TextStyle(height: 0.3),
       ),
       validator: (value) {
         return value!.isEmpty ? "This field cannot be empty" : null;

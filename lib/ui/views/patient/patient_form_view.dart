@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../common/enums/state_enum.dart';
 import '../../../data/providers/initial_patient_provider.dart';
 import '../../../utils/app_snackbar.dart';
-import '../../../utils/custom_text_form_field_date_picker.dart';
+import '../../widgets/custom_text_form_field_date_picker.dart';
 import '../../widgets/custom_loading_indicator.dart';
 
 class PatientFormView extends ConsumerStatefulWidget {

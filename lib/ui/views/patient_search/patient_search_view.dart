@@ -30,7 +30,6 @@ class _PatientSearchViewState extends ConsumerState<PatientSearchView> {
           previous?.appState == AppState.loading) {
         ref.read(patientSearchProvider.notifier).setInitialState();
         ref.read(patientSearchProvider.notifier).clearSearchInput();
-        //GoRouter.of(context).go(AppRoutes.home);
       } else if (next.appState == AppState.error &&
           previous?.appState == AppState.loading) {
         WidgetsBinding.instance.addPostFrameCallback(

@@ -3,9 +3,7 @@ import 'package:care_mate/ui/views/patient/patient_form_view.dart';
 import 'package:care_mate/ui/views/patient/patient_temperature_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../data/models/patient.dart';
 import '../../../data/providers/tabs_provider.dart';
 
 class PatientTabsView extends ConsumerStatefulWidget {

@@ -1,23 +1,22 @@
 import 'package:care_mate/ui/widgets/custom_text_form_field.dart';
+import 'package:care_mate/ui/widgets/custom_text_form_field_date_picker.dart';
 import 'package:flutter/material.dart';
 
 class CustomPopupForm extends StatelessWidget {
   final Function() onPressed;
   final String title1;
   final String? title2;
-  final String? title3;
   final Function(String) onChanged1;
   final Function(String)? onChanged2;
-  final Function(String)? onChanged3;
+  final Function(String)? setDate;
 
   const CustomPopupForm({
     required this.onPressed,
     required this.title1,
     this.title2,
-    this.title3,
     required this.onChanged1,
     this.onChanged2,
-    this.onChanged3,
+    this.setDate,
     super.key,
   });
 
@@ -59,12 +58,11 @@ class CustomPopupForm extends StatelessWidget {
                     onChanged: onChanged2!,
                   ),
                 ),
-              if (title3 != null && onChanged3 != null)
+              if (setDate != null)
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: CustomTextFormField(
-                    labelText: title3!,
-                    onChanged: onChanged3!,
+                  child: CustomTextFormFieldDatePicker(
+                    setDate: setDate,
                   ),
                 ),
               const SizedBox(height: 16.0),
