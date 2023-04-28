@@ -17,12 +17,12 @@ class TabsState with _$TabsState {
     @Default("") String name,
     @Default("") String surname,
     //patient temperatures tab
-    @Default(-1) double temperatureValue,
+    @Default("") String temperatureValue,
     @Default("") String temperatureMeasurementTime,
     @Default([]) List<Temperature> temperatures,
     //patient blood pressure tab
-    @Default(-1) int diastolicValue,
-    @Default(-1) int systolicValue,
+    @Default("") String diastolicValue,
+    @Default("") String systolicValue,
     @Default("") String bloodPressureMeasurementTime,
     @Default([]) List<BloodPressure> bloodPressures,
     //state

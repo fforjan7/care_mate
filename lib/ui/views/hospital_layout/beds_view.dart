@@ -37,6 +37,7 @@ class _HospitalBedsViewState extends ConsumerState<HospitalBedsView> {
                       builder: (BuildContext context) {
                         return AlertDialog(
                             content: CustomPopupForm(
+                          popupTitle: "Enter bed details",
                           title1: "Bed name",
                           onChanged1: (value) {
                             ref.read(bedsProvider.notifier).setName(value);

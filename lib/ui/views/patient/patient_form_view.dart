@@ -31,8 +31,7 @@ class _PatientFormViewState extends ConsumerState<PatientFormView> {
       if (next.appState == AppState.success &&
           previous?.appState == AppState.loading) {
         ref.read(tabsProvider.notifier).setInitialState();
-        //ref.read(tabsProvider.notifier).clearAllFields();
-        //GoRouter.of(context).go(AppRoutes.home);
+
         WidgetsBinding.instance.addPostFrameCallback(
           (timeStamp) {
             showAppSnackBar(
@@ -90,6 +89,7 @@ class _PatientFormViewState extends ConsumerState<PatientFormView> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: CustomTextFormFieldDatePicker(
+                        lableText: "Date of birth",
                         initialValueString: provider.dateOfBirth,
                       ),
                     ),
@@ -131,10 +131,6 @@ class _PatientFormViewState extends ConsumerState<PatientFormView> {
                           if (_formKey.currentState!.validate() &&
                               isPatientsDataChanged) {
                             ref.read(tabsProvider.notifier).updatePatientData();
-                            ref.read(initialPatientProvider.notifier).state =
-                                ref
-                                    .read(tabsProvider.notifier)
-                                    .getCurrentPatientData();
                           }
                         },
                         child: const Text("Update patient"),

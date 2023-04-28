@@ -35,15 +35,15 @@ class _HospitalFloorsViewState extends ConsumerState<HospitalFloorsView> {
                       builder: (BuildContext context) {
                         return AlertDialog(
                           content: CustomPopupForm(
-                              title1: "Floor name",
-                              onChanged1: (value) {
-                                ref
-                                    .read(floorsProvider.notifier)
-                                    .setName(value);
-                              },
-                              onPressed: () async => await ref
-                                  .read(floorsProvider.notifier)
-                                  .addFloor()),
+                            popupTitle: "Enter floor details",
+                            title1: "Floor name",
+                            onChanged1: (value) {
+                              ref.read(floorsProvider.notifier).setName(value);
+                            },
+                            onPressed: () async => await ref
+                                .read(floorsProvider.notifier)
+                                .addFloor(),
+                          ),
                         );
                       },
                     );

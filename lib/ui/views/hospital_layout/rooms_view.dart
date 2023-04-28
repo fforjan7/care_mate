@@ -38,6 +38,7 @@ class _HospitalRoomsViewState extends ConsumerState<HospitalRoomsView> {
                       builder: (BuildContext context) {
                         return AlertDialog(
                             content: CustomPopupForm(
+                          popupTitle: "Enter room details",
                           title1: "Room name",
                           onChanged1: (value) {
                             ref.read(roomsProvider.notifier).setName(value);

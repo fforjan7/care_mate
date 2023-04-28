@@ -8,8 +8,8 @@ part of 'patient.dart';
 
 BloodPressure _$BloodPressureFromJson(Map<String, dynamic> json) =>
     BloodPressure(
-      diastolic: json['diastolic'] as int,
-      systolic: json['systolic'] as int,
+      diastolic: json['diastolic'] as String,
+      systolic: json['systolic'] as String,
       measurement_time: json['measurement_time'] as String,
     );
 
@@ -21,7 +21,7 @@ Map<String, dynamic> _$BloodPressureToJson(BloodPressure instance) =>
     };
 
 Temperature _$TemperatureFromJson(Map<String, dynamic> json) => Temperature(
-      measurement_value: (json['measurement_value'] as num).toDouble(),
+      measurement_value: json['measurement_value'] as String,
       measurement_time: json['measurement_time'] as String,
     );
 

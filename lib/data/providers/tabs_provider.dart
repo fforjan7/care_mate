@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../common/enums/state_enum.dart';
 import '../models/patient.dart';
+import 'initial_patient_provider.dart';
 
 class TabsNotifier extends StateNotifier<TabsState> {
   TabsNotifier(this.ref) : super(const TabsState());
@@ -19,6 +20,14 @@ class TabsNotifier extends StateNotifier<TabsState> {
 
   void setCity(String city) {
     state = state.copyWith(city: city);
+  }
+
+  void setTemperatureValue(String value) {
+    state = state.copyWith(temperatureValue: value);
+  }
+
+  void setTemperatureMeasurementTime(String time) {
+    state = state.copyWith(temperatureMeasurementTime: time);
   }
 
   void setInitialPatientData(Patient patient) {
@@ -63,18 +72,38 @@ class TabsNotifier extends StateNotifier<TabsState> {
   Future<void> updatePatientData() async {
     state = state.copyWith(appState: AppState.loading);
     try {
-      await ref.read(firestoreRepositoryProvider).updatePatient(
-            patient: Patient(
-              address: state.address,
-              city: state.city,
-              date_of_birth: state.dateOfBirth,
-              gender: state.gender,
-              name: state.name,
-              surname: state.surname,
-              id: state.id,
-            ),
-          );
+      await ref
+          .read(firestoreRepositoryProvider)
+          .updatePatient(patient: getCurrentPatientData());
+      //update initalPatientProvider to disable button (comparison value)
+      ref.read(initialPatientProvider.notifier).state =
+          ref.read(tabsProvider.notifier).getCurrentPatientData();
     } catch (e) {
+      state = state.copyWith(appState: AppState.error, error: e.toString());
+    }
+    state = state.copyWith(appState: AppState.success);
+    return;
+  }
+
+  Future<void> addTemperatureMeasurement() async {
+    state = state.copyWith(appState: AppState.loading);
+    try {
+      Temperature temperature = Temperature(
+        measurement_value: state.temperatureValue,
+        measurement_time: state.temperatureMeasurementTime,
+      );
+
+      List<Temperature> updatedTemperatures =
+          List<Temperature>.from(state.temperatures)..add(temperature);
+
+      state = state.copyWith(temperatures: updatedTemperatures);
+
+      await ref
+          .read(firestoreRepositoryProvider)
+          .addTemperatureMeasurement(patient: getCurrentPatientData());
+    } catch (e) {
+      print("IMAS ERRPR");
+      print(e.toString());
       state = state.copyWith(appState: AppState.error, error: e.toString());
     }
     state = state.copyWith(appState: AppState.success);

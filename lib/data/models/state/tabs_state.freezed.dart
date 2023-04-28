@@ -25,12 +25,12 @@ mixin _$TabsState {
   String get name => throw _privateConstructorUsedError;
   String get surname =>
       throw _privateConstructorUsedError; //patient temperatures tab
-  double get temperatureValue => throw _privateConstructorUsedError;
+  String get temperatureValue => throw _privateConstructorUsedError;
   String get temperatureMeasurementTime => throw _privateConstructorUsedError;
   List<Temperature> get temperatures =>
       throw _privateConstructorUsedError; //patient blood pressure tab
-  int get diastolicValue => throw _privateConstructorUsedError;
-  int get systolicValue => throw _privateConstructorUsedError;
+  String get diastolicValue => throw _privateConstructorUsedError;
+  String get systolicValue => throw _privateConstructorUsedError;
   String get bloodPressureMeasurementTime => throw _privateConstructorUsedError;
   List<BloodPressure> get bloodPressures =>
       throw _privateConstructorUsedError; //state
@@ -55,11 +55,11 @@ abstract class $TabsStateCopyWith<$Res> {
       String gender,
       String name,
       String surname,
-      double temperatureValue,
+      String temperatureValue,
       String temperatureMeasurementTime,
       List<Temperature> temperatures,
-      int diastolicValue,
-      int systolicValue,
+      String diastolicValue,
+      String systolicValue,
       String bloodPressureMeasurementTime,
       List<BloodPressure> bloodPressures,
       AppState appState,
@@ -128,7 +128,7 @@ class _$TabsStateCopyWithImpl<$Res, $Val extends TabsState>
       temperatureValue: null == temperatureValue
           ? _value.temperatureValue
           : temperatureValue // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       temperatureMeasurementTime: null == temperatureMeasurementTime
           ? _value.temperatureMeasurementTime
           : temperatureMeasurementTime // ignore: cast_nullable_to_non_nullable
@@ -140,11 +140,11 @@ class _$TabsStateCopyWithImpl<$Res, $Val extends TabsState>
       diastolicValue: null == diastolicValue
           ? _value.diastolicValue
           : diastolicValue // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       systolicValue: null == systolicValue
           ? _value.systolicValue
           : systolicValue // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       bloodPressureMeasurementTime: null == bloodPressureMeasurementTime
           ? _value.bloodPressureMeasurementTime
           : bloodPressureMeasurementTime // ignore: cast_nullable_to_non_nullable
@@ -180,11 +180,11 @@ abstract class _$$_TabsStateCopyWith<$Res> implements $TabsStateCopyWith<$Res> {
       String gender,
       String name,
       String surname,
-      double temperatureValue,
+      String temperatureValue,
       String temperatureMeasurementTime,
       List<Temperature> temperatures,
-      int diastolicValue,
-      int systolicValue,
+      String diastolicValue,
+      String systolicValue,
       String bloodPressureMeasurementTime,
       List<BloodPressure> bloodPressures,
       AppState appState,
@@ -251,7 +251,7 @@ class __$$_TabsStateCopyWithImpl<$Res>
       temperatureValue: null == temperatureValue
           ? _value.temperatureValue
           : temperatureValue // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       temperatureMeasurementTime: null == temperatureMeasurementTime
           ? _value.temperatureMeasurementTime
           : temperatureMeasurementTime // ignore: cast_nullable_to_non_nullable
@@ -263,11 +263,11 @@ class __$$_TabsStateCopyWithImpl<$Res>
       diastolicValue: null == diastolicValue
           ? _value.diastolicValue
           : diastolicValue // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       systolicValue: null == systolicValue
           ? _value.systolicValue
           : systolicValue // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       bloodPressureMeasurementTime: null == bloodPressureMeasurementTime
           ? _value.bloodPressureMeasurementTime
           : bloodPressureMeasurementTime // ignore: cast_nullable_to_non_nullable
@@ -299,11 +299,11 @@ class _$_TabsState implements _TabsState {
       this.gender = "",
       this.name = "",
       this.surname = "",
-      this.temperatureValue = -1,
+      this.temperatureValue = "",
       this.temperatureMeasurementTime = "",
       final List<Temperature> temperatures = const [],
-      this.diastolicValue = -1,
-      this.systolicValue = -1,
+      this.diastolicValue = "",
+      this.systolicValue = "",
       this.bloodPressureMeasurementTime = "",
       final List<BloodPressure> bloodPressures = const [],
       this.appState = AppState.initial,
@@ -336,7 +336,7 @@ class _$_TabsState implements _TabsState {
 //patient temperatures tab
   @override
   @JsonKey()
-  final double temperatureValue;
+  final String temperatureValue;
   @override
   @JsonKey()
   final String temperatureMeasurementTime;
@@ -352,10 +352,10 @@ class _$_TabsState implements _TabsState {
 //patient blood pressure tab
   @override
   @JsonKey()
-  final int diastolicValue;
+  final String diastolicValue;
   @override
   @JsonKey()
-  final int systolicValue;
+  final String systolicValue;
   @override
   @JsonKey()
   final String bloodPressureMeasurementTime;
@@ -453,11 +453,11 @@ abstract class _TabsState implements TabsState {
       final String gender,
       final String name,
       final String surname,
-      final double temperatureValue,
+      final String temperatureValue,
       final String temperatureMeasurementTime,
       final List<Temperature> temperatures,
-      final int diastolicValue,
-      final int systolicValue,
+      final String diastolicValue,
+      final String systolicValue,
       final String bloodPressureMeasurementTime,
       final List<BloodPressure> bloodPressures,
       final AppState appState,
@@ -478,15 +478,15 @@ abstract class _TabsState implements TabsState {
   @override
   String get surname;
   @override //patient temperatures tab
-  double get temperatureValue;
+  String get temperatureValue;
   @override
   String get temperatureMeasurementTime;
   @override
   List<Temperature> get temperatures;
   @override //patient blood pressure tab
-  int get diastolicValue;
+  String get diastolicValue;
   @override
-  int get systolicValue;
+  String get systolicValue;
   @override
   String get bloodPressureMeasurementTime;
   @override

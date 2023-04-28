@@ -21,7 +21,11 @@ class FirestoreRepository {
   }
 
   Future<void> updatePatient({required Patient patient}) async {
-    await _firestoreService.updatePatient(patient: patient);
+    await _firestoreService.updatePatientData(patient: patient);
+  }
+
+  Future<void> addTemperatureMeasurement({required Patient patient}) async {
+    await _firestoreService.addTemperatureMeasurement(patient: patient);
   }
 
   Future<void> addFloor({required Floor floor}) async {

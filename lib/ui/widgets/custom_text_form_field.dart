@@ -6,12 +6,14 @@ class CustomTextFormField extends StatelessWidget {
     this.onChanged,
     required this.labelText,
     this.initialValue,
+    this.textInputType = TextInputType.text,
     super.key,
   });
 
   final Function(String)? onChanged;
   final String labelText;
   final String? initialValue;
+  final TextInputType textInputType;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class CustomTextFormField extends StatelessWidget {
       enabled: onChanged == null ? false : true,
       style:
           TextStyle(color: onChanged == null ? Colors.grey[400] : Colors.black),
+      keyboardType: textInputType,
       decoration: InputDecoration(
         labelText: labelText,
         border: const OutlineInputBorder(),

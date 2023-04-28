@@ -23,8 +23,8 @@ class Patient with _$Patient {
 
 @JsonSerializable()
 class BloodPressure {
-  final int diastolic;
-  final int systolic;
+  final String diastolic;
+  final String systolic;
   final String measurement_time;
 
   BloodPressure({
@@ -41,7 +41,7 @@ class BloodPressure {
 
 @JsonSerializable()
 class Temperature {
-  final double measurement_value;
+  final String measurement_value;
   final String measurement_time;
 
   Temperature({

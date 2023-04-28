@@ -51,7 +51,7 @@ class FirestoreService {
     }
   }
 
-  Future<void> updatePatient({
+  Future<void> updatePatientData({
     required Patient patient,
   }) async {
     try {
@@ -61,6 +61,23 @@ class FirestoreService {
           patientsCollectionRef.doc(patient.id);
 
       await patientDocRef.update(patient.toJson());
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> addTemperatureMeasurement({required Patient patient}) async {
+    try {
+      final CollectionReference patientsCollectionRef =
+          _firebaseFireStore.collection('patients');
+      final DocumentReference patientDocRef =
+          patientsCollectionRef.doc(patient.id);
+
+      final Map<String, dynamic> temperaturesMap = {
+        'temperatures': patient.temperatures.map((t) => t.toJson()).toList()
+      };
+
+      await patientDocRef.update(temperaturesMap);
     } catch (e) {
       rethrow;
     }

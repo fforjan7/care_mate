@@ -83,6 +83,7 @@ class _PatientAddViewState extends ConsumerState<PatientAddView> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: CustomTextFormFieldDatePicker(
+                          lableText: "Date of birth",
                           initialValueString: provider.date_of_birth,
                           setDate: ref
                               .read(patientAddProvider.notifier)
