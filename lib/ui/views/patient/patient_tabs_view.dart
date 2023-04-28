@@ -1,16 +1,21 @@
-import 'package:care_mate/ui/views/patient/patiend_form_view.dart';
 import 'package:care_mate/ui/views/patient/patient_blood_pressures_view.dart';
+import 'package:care_mate/ui/views/patient/patient_form_view.dart';
 import 'package:care_mate/ui/views/patient/patient_temperature_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-class PatientTabsView extends StatefulWidget {
+import '../../../data/models/patient.dart';
+import '../../../data/providers/tabs_provider.dart';
+
+class PatientTabsView extends ConsumerStatefulWidget {
   const PatientTabsView({Key? key}) : super(key: key);
 
   @override
-  State<PatientTabsView> createState() => _PatientTabsViewState();
+  ConsumerState<PatientTabsView> createState() => _PatientTabsViewState();
 }
 
-class _PatientTabsViewState extends State<PatientTabsView> {
+class _PatientTabsViewState extends ConsumerState<PatientTabsView> {
   final List<Widget> _tabs = [
     const PatientFormView(),
     const PatientTemperaturesView(),
@@ -19,6 +24,8 @@ class _PatientTabsViewState extends State<PatientTabsView> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = ref.watch(tabsProvider);
+
     return DefaultTabController(
       length: _tabs.length,
       child: Scaffold(

@@ -3,10 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../common/enums/state_enum.dart';
 import '../models/patient.dart';
+
 import '../models/state/patient_add_state.dart';
 
-class PatientAddNotifier extends StateNotifier<PatientState> {
-  PatientAddNotifier(this.ref) : super(const PatientState());
+class PatientAddNotifier extends StateNotifier<PatientAddState> {
+  PatientAddNotifier(this.ref) : super(const PatientAddState());
   final Ref ref;
 
   void setAddress(String address) {
@@ -67,6 +68,7 @@ class PatientAddNotifier extends StateNotifier<PatientState> {
 }
 
 final patientAddProvider =
-    StateNotifierProvider.autoDispose<PatientAddNotifier, PatientState>((ref) {
+    StateNotifierProvider.autoDispose<PatientAddNotifier, PatientAddState>(
+        (ref) {
   return PatientAddNotifier(ref);
 });

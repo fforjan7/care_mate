@@ -56,10 +56,7 @@ class _CustomTextFormFieldDatePickerState
       style: TextStyle(
           color: widget.setDate == null ? Colors.grey[400] : Colors.black),
       decoration: const InputDecoration(
-        hintText: /*  widget.initialValueString != ""
-            ? widget.initialValueString
-            :  */
-            'Select date',
+        labelText: 'Date of birth',
         border: OutlineInputBorder(),
         suffixIcon: Icon(Icons.calendar_today),
       ),

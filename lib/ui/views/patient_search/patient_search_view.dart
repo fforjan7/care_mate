@@ -1,7 +1,9 @@
 import 'package:care_mate/common/enums/constants/routes.dart';
 import 'package:care_mate/data/models/patient.dart';
+import 'package:care_mate/data/providers/initial_patient_provider.dart';
 import 'package:care_mate/data/providers/patient_search_provider.dart';
 import 'package:care_mate/data/providers/repositories/firestore_repository_provider.dart';
+import 'package:care_mate/data/providers/tabs_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -92,8 +94,12 @@ class _PatientSearchViewState extends ConsumerState<PatientSearchView> {
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () {
-                          GoRouter.of(context).push(AppRoutes.patientTabs,
-                              extra: filteredPatients[index].toJson());
+                          ref
+                              .read(tabsProvider.notifier)
+                              .setInitialPatientData(filteredPatients[index]);
+                          ref.read(initialPatientProvider.notifier).state =
+                              filteredPatients[index];
+                          GoRouter.of(context).push(AppRoutes.patientTabs);
                         },
                         child: ListTile(
                           title: Text(
