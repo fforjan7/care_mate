@@ -24,6 +24,10 @@ class FirestoreRepository {
     await _firestoreService.updatePatientData(patient: patient);
   }
 
+  Future<void> updateBed({required Bed bed}) async {
+    await _firestoreService.updateBed(bed: bed);
+  }
+
   Future<void> addTemperatureMeasurement({required Patient patient}) async {
     await _firestoreService.addTemperatureMeasurement(patient: patient);
   }
@@ -60,10 +64,11 @@ class FirestoreRepository {
     return _firestoreService.streamBeds(room: room);
   }
 
-  Future<List<Bed>> getBeds({
-    required String floor,
-    required String room,
-  }) async {
-    return await _firestoreService.getBeds(floor: floor, room: room);
+  Future<Bed?> getBedByNfcId({required String nfcId}) async {
+    return _firestoreService.getBedByNfcId(nfcId: nfcId);
+  }
+
+  Future<Patient?> getPatientByBed({required String patientId}) async {
+    return _firestoreService.getPatientByBed(patientId: patientId);
   }
 }

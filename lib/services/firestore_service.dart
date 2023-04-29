@@ -59,8 +59,22 @@ class FirestoreService {
           _firebaseFireStore.collection('patients');
       final DocumentReference patientDocRef =
           patientsCollectionRef.doc(patient.id);
-
+      print(patient.temperatures.first.toJson());
       await patientDocRef.update(patient.toJson());
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> updateBed({
+    required Bed bed,
+  }) async {
+    try {
+      final CollectionReference bedsCollectionRef =
+          _firebaseFireStore.collection('beds');
+      final DocumentReference bedDocRef = bedsCollectionRef.doc(bed.id);
+
+      await bedDocRef.update(bed.toJson());
     } catch (e) {
       rethrow;
     }
@@ -76,7 +90,6 @@ class FirestoreService {
       final Map<String, dynamic> temperaturesMap = {
         'temperatures': patient.temperatures.map((t) => t.toJson()).toList()
       };
-
       await patientDocRef.update(temperaturesMap);
     } catch (e) {
       rethrow;
@@ -207,28 +220,31 @@ class FirestoreService {
     }
   }
 
-  Future<List<Bed>> getBeds({
-    required String floor,
-    required String room,
-  }) async {
-    final List<Bed> beds = [];
-    try {
-      final CollectionReference bedsCollectionRef = _firebaseFireStore
-          .collection('/hospital/kbc/floors/$floor/rooms/$room/beds');
-      final QuerySnapshot snapshot = await bedsCollectionRef.get();
-      final List<QueryDocumentSnapshot> docs = snapshot.docs;
+  Future<Bed?> getBedByNfcId({required String nfcId}) async {
+    final bedSnapshot = await FirebaseFirestore.instance
+        .collection('beds')
+        .where('nfc_id', isEqualTo: nfcId)
+        .limit(1)
+        .get();
 
-      for (var doc in docs) {
-        final String bedId = doc.id;
-
-        final String patientId = doc.get("patient_id");
-        final Bed bed = Bed(name: bedId, patientId: patientId);
-        beds.add(bed);
-      }
-
-      return beds;
-    } catch (e) {
-      rethrow;
+    if (bedSnapshot.size == 0) {
+      return null;
     }
+    final bed = Bed.fromJson(bedSnapshot.docs.first.data());
+    return bed;
+  }
+
+  Future<Patient?> getPatientByBed({required String patientId}) async {
+    final patientSnapshot = await FirebaseFirestore.instance
+        .collection('patients')
+        .where('id', isEqualTo: patientId)
+        .limit(1)
+        .get();
+
+    if (patientSnapshot.size == 0) {
+      return null;
+    }
+    final patient = Patient.fromJson(patientSnapshot.docs.first.data());
+    return patient;
   }
 }

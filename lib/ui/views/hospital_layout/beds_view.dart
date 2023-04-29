@@ -1,5 +1,6 @@
 import 'package:care_mate/data/models/bed.dart';
 import 'package:care_mate/data/providers/beds_provider.dart';
+import 'package:care_mate/data/providers/nfc_provider.dart';
 import 'package:care_mate/data/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,6 +23,8 @@ class _HospitalBedsViewState extends ConsumerState<HospitalBedsView> {
   Widget build(BuildContext context) {
     var isAdmin = ref.read(userProvider).isAdmin;
     var provider = ref.watch(bedsProvider);
+    var nfcId = ref.read(nfcProvider).id;
+
     final roomJson = GoRouterState.of(context).extra as Map<String, dynamic>;
     final room = Room.fromJson(roomJson);
     return Scaffold(
@@ -73,6 +76,7 @@ class _HospitalBedsViewState extends ConsumerState<HospitalBedsView> {
                         },
                         child: ListTile(
                           title: Text(beds[index].name),
+                          onTap: () {},
                         ),
                       );
                     },

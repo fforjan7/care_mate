@@ -21,36 +21,25 @@ class Patient with _$Patient {
       _$PatientFromJson(json);
 }
 
-@JsonSerializable()
-class BloodPressure {
-  final String diastolic;
-  final String systolic;
-  final String measurement_time;
-
-  BloodPressure({
-    required this.diastolic,
-    required this.systolic,
-    required this.measurement_time,
-  });
+@freezed
+class BloodPressure with _$BloodPressure {
+  const factory BloodPressure({
+    @Default("") String diastolic,
+    @Default("") String systolic,
+    @Default("") String measurement_time,
+  }) = _BloodPressure;
 
   factory BloodPressure.fromJson(Map<String, dynamic> json) =>
       _$BloodPressureFromJson(json);
-
-  Map<String, dynamic> toJson() => _$BloodPressureToJson(this);
 }
 
-@JsonSerializable()
-class Temperature {
-  final String measurement_value;
-  final String measurement_time;
-
-  Temperature({
-    required this.measurement_value,
-    required this.measurement_time,
-  });
+@freezed
+class Temperature with _$Temperature {
+  const factory Temperature({
+    @Default("") String measurement_value,
+    @Default("") String measurement_time,
+  }) = _Temperature;
 
   factory Temperature.fromJson(Map<String, dynamic> json) =>
       _$TemperatureFromJson(json);
-
-  Map<String, dynamic> toJson() => _$TemperatureToJson(this);
 }

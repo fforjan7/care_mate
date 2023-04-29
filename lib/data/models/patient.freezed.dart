@@ -343,3 +343,342 @@ abstract class _Patient implements Patient {
   _$$_PatientCopyWith<_$_Patient> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+BloodPressure _$BloodPressureFromJson(Map<String, dynamic> json) {
+  return _BloodPressure.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BloodPressure {
+  String get diastolic => throw _privateConstructorUsedError;
+  String get systolic => throw _privateConstructorUsedError;
+  String get measurement_time => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BloodPressureCopyWith<BloodPressure> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BloodPressureCopyWith<$Res> {
+  factory $BloodPressureCopyWith(
+          BloodPressure value, $Res Function(BloodPressure) then) =
+      _$BloodPressureCopyWithImpl<$Res, BloodPressure>;
+  @useResult
+  $Res call({String diastolic, String systolic, String measurement_time});
+}
+
+/// @nodoc
+class _$BloodPressureCopyWithImpl<$Res, $Val extends BloodPressure>
+    implements $BloodPressureCopyWith<$Res> {
+  _$BloodPressureCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? diastolic = null,
+    Object? systolic = null,
+    Object? measurement_time = null,
+  }) {
+    return _then(_value.copyWith(
+      diastolic: null == diastolic
+          ? _value.diastolic
+          : diastolic // ignore: cast_nullable_to_non_nullable
+              as String,
+      systolic: null == systolic
+          ? _value.systolic
+          : systolic // ignore: cast_nullable_to_non_nullable
+              as String,
+      measurement_time: null == measurement_time
+          ? _value.measurement_time
+          : measurement_time // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_BloodPressureCopyWith<$Res>
+    implements $BloodPressureCopyWith<$Res> {
+  factory _$$_BloodPressureCopyWith(
+          _$_BloodPressure value, $Res Function(_$_BloodPressure) then) =
+      __$$_BloodPressureCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String diastolic, String systolic, String measurement_time});
+}
+
+/// @nodoc
+class __$$_BloodPressureCopyWithImpl<$Res>
+    extends _$BloodPressureCopyWithImpl<$Res, _$_BloodPressure>
+    implements _$$_BloodPressureCopyWith<$Res> {
+  __$$_BloodPressureCopyWithImpl(
+      _$_BloodPressure _value, $Res Function(_$_BloodPressure) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? diastolic = null,
+    Object? systolic = null,
+    Object? measurement_time = null,
+  }) {
+    return _then(_$_BloodPressure(
+      diastolic: null == diastolic
+          ? _value.diastolic
+          : diastolic // ignore: cast_nullable_to_non_nullable
+              as String,
+      systolic: null == systolic
+          ? _value.systolic
+          : systolic // ignore: cast_nullable_to_non_nullable
+              as String,
+      measurement_time: null == measurement_time
+          ? _value.measurement_time
+          : measurement_time // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_BloodPressure implements _BloodPressure {
+  const _$_BloodPressure(
+      {this.diastolic = "", this.systolic = "", this.measurement_time = ""});
+
+  factory _$_BloodPressure.fromJson(Map<String, dynamic> json) =>
+      _$$_BloodPressureFromJson(json);
+
+  @override
+  @JsonKey()
+  final String diastolic;
+  @override
+  @JsonKey()
+  final String systolic;
+  @override
+  @JsonKey()
+  final String measurement_time;
+
+  @override
+  String toString() {
+    return 'BloodPressure(diastolic: $diastolic, systolic: $systolic, measurement_time: $measurement_time)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_BloodPressure &&
+            (identical(other.diastolic, diastolic) ||
+                other.diastolic == diastolic) &&
+            (identical(other.systolic, systolic) ||
+                other.systolic == systolic) &&
+            (identical(other.measurement_time, measurement_time) ||
+                other.measurement_time == measurement_time));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, diastolic, systolic, measurement_time);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_BloodPressureCopyWith<_$_BloodPressure> get copyWith =>
+      __$$_BloodPressureCopyWithImpl<_$_BloodPressure>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_BloodPressureToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BloodPressure implements BloodPressure {
+  const factory _BloodPressure(
+      {final String diastolic,
+      final String systolic,
+      final String measurement_time}) = _$_BloodPressure;
+
+  factory _BloodPressure.fromJson(Map<String, dynamic> json) =
+      _$_BloodPressure.fromJson;
+
+  @override
+  String get diastolic;
+  @override
+  String get systolic;
+  @override
+  String get measurement_time;
+  @override
+  @JsonKey(ignore: true)
+  _$$_BloodPressureCopyWith<_$_BloodPressure> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Temperature _$TemperatureFromJson(Map<String, dynamic> json) {
+  return _Temperature.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Temperature {
+  String get measurement_value => throw _privateConstructorUsedError;
+  String get measurement_time => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TemperatureCopyWith<Temperature> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TemperatureCopyWith<$Res> {
+  factory $TemperatureCopyWith(
+          Temperature value, $Res Function(Temperature) then) =
+      _$TemperatureCopyWithImpl<$Res, Temperature>;
+  @useResult
+  $Res call({String measurement_value, String measurement_time});
+}
+
+/// @nodoc
+class _$TemperatureCopyWithImpl<$Res, $Val extends Temperature>
+    implements $TemperatureCopyWith<$Res> {
+  _$TemperatureCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? measurement_value = null,
+    Object? measurement_time = null,
+  }) {
+    return _then(_value.copyWith(
+      measurement_value: null == measurement_value
+          ? _value.measurement_value
+          : measurement_value // ignore: cast_nullable_to_non_nullable
+              as String,
+      measurement_time: null == measurement_time
+          ? _value.measurement_time
+          : measurement_time // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_TemperatureCopyWith<$Res>
+    implements $TemperatureCopyWith<$Res> {
+  factory _$$_TemperatureCopyWith(
+          _$_Temperature value, $Res Function(_$_Temperature) then) =
+      __$$_TemperatureCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String measurement_value, String measurement_time});
+}
+
+/// @nodoc
+class __$$_TemperatureCopyWithImpl<$Res>
+    extends _$TemperatureCopyWithImpl<$Res, _$_Temperature>
+    implements _$$_TemperatureCopyWith<$Res> {
+  __$$_TemperatureCopyWithImpl(
+      _$_Temperature _value, $Res Function(_$_Temperature) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? measurement_value = null,
+    Object? measurement_time = null,
+  }) {
+    return _then(_$_Temperature(
+      measurement_value: null == measurement_value
+          ? _value.measurement_value
+          : measurement_value // ignore: cast_nullable_to_non_nullable
+              as String,
+      measurement_time: null == measurement_time
+          ? _value.measurement_time
+          : measurement_time // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Temperature implements _Temperature {
+  const _$_Temperature(
+      {this.measurement_value = "", this.measurement_time = ""});
+
+  factory _$_Temperature.fromJson(Map<String, dynamic> json) =>
+      _$$_TemperatureFromJson(json);
+
+  @override
+  @JsonKey()
+  final String measurement_value;
+  @override
+  @JsonKey()
+  final String measurement_time;
+
+  @override
+  String toString() {
+    return 'Temperature(measurement_value: $measurement_value, measurement_time: $measurement_time)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Temperature &&
+            (identical(other.measurement_value, measurement_value) ||
+                other.measurement_value == measurement_value) &&
+            (identical(other.measurement_time, measurement_time) ||
+                other.measurement_time == measurement_time));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, measurement_value, measurement_time);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_TemperatureCopyWith<_$_Temperature> get copyWith =>
+      __$$_TemperatureCopyWithImpl<_$_Temperature>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_TemperatureToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Temperature implements Temperature {
+  const factory _Temperature(
+      {final String measurement_value,
+      final String measurement_time}) = _$_Temperature;
+
+  factory _Temperature.fromJson(Map<String, dynamic> json) =
+      _$_Temperature.fromJson;
+
+  @override
+  String get measurement_value;
+  @override
+  String get measurement_time;
+  @override
+  @JsonKey(ignore: true)
+  _$$_TemperatureCopyWith<_$_Temperature> get copyWith =>
+      throw _privateConstructorUsedError;
+}

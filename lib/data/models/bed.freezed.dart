@@ -26,8 +26,8 @@ mixin _$Bed {
   String get patientId => throw _privateConstructorUsedError;
   @JsonKey(name: "room_id")
   String get roomId => throw _privateConstructorUsedError;
-  @JsonKey(name: "nfc_uid")
-  String get nfcUid => throw _privateConstructorUsedError;
+  @JsonKey(name: "nfc_id")
+  String get nfcId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +44,7 @@ abstract class $BedCopyWith<$Res> {
       String name,
       @JsonKey(name: "patient_id") String patientId,
       @JsonKey(name: "room_id") String roomId,
-      @JsonKey(name: "nfc_uid") String nfcUid});
+      @JsonKey(name: "nfc_id") String nfcId});
 }
 
 /// @nodoc
@@ -63,7 +63,7 @@ class _$BedCopyWithImpl<$Res, $Val extends Bed> implements $BedCopyWith<$Res> {
     Object? name = null,
     Object? patientId = null,
     Object? roomId = null,
-    Object? nfcUid = null,
+    Object? nfcId = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -82,9 +82,9 @@ class _$BedCopyWithImpl<$Res, $Val extends Bed> implements $BedCopyWith<$Res> {
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
               as String,
-      nfcUid: null == nfcUid
-          ? _value.nfcUid
-          : nfcUid // ignore: cast_nullable_to_non_nullable
+      nfcId: null == nfcId
+          ? _value.nfcId
+          : nfcId // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -101,7 +101,7 @@ abstract class _$$_BedCopyWith<$Res> implements $BedCopyWith<$Res> {
       String name,
       @JsonKey(name: "patient_id") String patientId,
       @JsonKey(name: "room_id") String roomId,
-      @JsonKey(name: "nfc_uid") String nfcUid});
+      @JsonKey(name: "nfc_id") String nfcId});
 }
 
 /// @nodoc
@@ -117,7 +117,7 @@ class __$$_BedCopyWithImpl<$Res> extends _$BedCopyWithImpl<$Res, _$_Bed>
     Object? name = null,
     Object? patientId = null,
     Object? roomId = null,
-    Object? nfcUid = null,
+    Object? nfcId = null,
   }) {
     return _then(_$_Bed(
       id: null == id
@@ -136,9 +136,9 @@ class __$$_BedCopyWithImpl<$Res> extends _$BedCopyWithImpl<$Res, _$_Bed>
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
               as String,
-      nfcUid: null == nfcUid
-          ? _value.nfcUid
-          : nfcUid // ignore: cast_nullable_to_non_nullable
+      nfcId: null == nfcId
+          ? _value.nfcId
+          : nfcId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -152,7 +152,7 @@ class _$_Bed implements _Bed {
       this.name = "",
       @JsonKey(name: "patient_id") this.patientId = "",
       @JsonKey(name: "room_id") this.roomId = "",
-      @JsonKey(name: "nfc_uid") this.nfcUid = ""});
+      @JsonKey(name: "nfc_id") this.nfcId = ""});
 
   factory _$_Bed.fromJson(Map<String, dynamic> json) => _$$_BedFromJson(json);
 
@@ -169,12 +169,12 @@ class _$_Bed implements _Bed {
   @JsonKey(name: "room_id")
   final String roomId;
   @override
-  @JsonKey(name: "nfc_uid")
-  final String nfcUid;
+  @JsonKey(name: "nfc_id")
+  final String nfcId;
 
   @override
   String toString() {
-    return 'Bed(id: $id, name: $name, patientId: $patientId, roomId: $roomId, nfcUid: $nfcUid)';
+    return 'Bed(id: $id, name: $name, patientId: $patientId, roomId: $roomId, nfcId: $nfcId)';
   }
 
   @override
@@ -187,13 +187,13 @@ class _$_Bed implements _Bed {
             (identical(other.patientId, patientId) ||
                 other.patientId == patientId) &&
             (identical(other.roomId, roomId) || other.roomId == roomId) &&
-            (identical(other.nfcUid, nfcUid) || other.nfcUid == nfcUid));
+            (identical(other.nfcId, nfcId) || other.nfcId == nfcId));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, patientId, roomId, nfcUid);
+      Object.hash(runtimeType, id, name, patientId, roomId, nfcId);
 
   @JsonKey(ignore: true)
   @override
@@ -215,7 +215,7 @@ abstract class _Bed implements Bed {
       final String name,
       @JsonKey(name: "patient_id") final String patientId,
       @JsonKey(name: "room_id") final String roomId,
-      @JsonKey(name: "nfc_uid") final String nfcUid}) = _$_Bed;
+      @JsonKey(name: "nfc_id") final String nfcId}) = _$_Bed;
 
   factory _Bed.fromJson(Map<String, dynamic> json) = _$_Bed.fromJson;
 
@@ -230,8 +230,8 @@ abstract class _Bed implements Bed {
   @JsonKey(name: "room_id")
   String get roomId;
   @override
-  @JsonKey(name: "nfc_uid")
-  String get nfcUid;
+  @JsonKey(name: "nfc_id")
+  String get nfcId;
   @override
   @JsonKey(ignore: true)
   _$$_BedCopyWith<_$_Bed> get copyWith => throw _privateConstructorUsedError;

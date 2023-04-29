@@ -10,7 +10,7 @@ class Bed with _$Bed {
     @Default("") String name,
     @JsonKey(name: "patient_id") @Default("") String patientId,
     @JsonKey(name: "room_id") @Default("") String roomId,
-    @JsonKey(name: "nfc_uid") @Default("") String nfcUid,
+    @JsonKey(name: "nfc_id") @Default("") String nfcId,
   }) = _Bed;
 
   factory Bed.fromJson(Map<String, dynamic> json) => _$BedFromJson(json);
