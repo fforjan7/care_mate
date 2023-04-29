@@ -11,6 +11,7 @@ _$_Bed _$$_BedFromJson(Map<String, dynamic> json) => _$_Bed(
       name: json['name'] as String? ?? "",
       patientId: json['patient_id'] as String? ?? "",
       roomId: json['room_id'] as String? ?? "",
+      nfcUid: json['nfc_uid'] as String? ?? "",
     );
 
 Map<String, dynamic> _$$_BedToJson(_$_Bed instance) => <String, dynamic>{
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$_BedToJson(_$_Bed instance) => <String, dynamic>{
       'name': instance.name,
       'patient_id': instance.patientId,
       'room_id': instance.roomId,
+      'nfc_uid': instance.nfcUid,
     };

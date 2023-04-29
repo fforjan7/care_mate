@@ -21,6 +21,7 @@ dependencies:
   json_annotation: ^4.8.0
   json_serializable: ^6.6.1
   loading_indicator: ^3.1.0
+  nfc_manager: ^3.2.0
   riverpod: ^2.3.2
 
 dev_dependencies:
