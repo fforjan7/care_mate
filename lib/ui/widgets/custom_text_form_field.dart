@@ -43,15 +43,18 @@ class CapitalizeWordsTextInputFormatter extends TextInputFormatter {
       TextEditingValue oldValue, TextEditingValue newValue) {
     final List<String> words = newValue.text.split(' ');
     final StringBuffer formatted = StringBuffer();
-    for (String word in words) {
+    for (int i = 0; i < words.length; i++) {
+      String word = words[i];
       if (word.isNotEmpty) {
         formatted.write(word[0].toUpperCase());
         formatted.write(word.substring(1).toLowerCase());
-        formatted.write(' ');
+        if (i < words.length - 1) {
+          formatted.write(' ');
+        }
       }
     }
     return TextEditingValue(
-      text: formatted.toString().trimRight(),
+      text: formatted.toString(),
       selection: newValue.selection,
       composing: TextRange.empty,
     );
