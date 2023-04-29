@@ -74,7 +74,14 @@ class TabsNotifier extends StateNotifier<TabsState> {
   }
 
   bool isPatientDataChanged({required Patient patient}) {
-    return patient != getCurrentPatientData();
+    Patient currentPatient = getCurrentPatientData();
+    return (patient.id != currentPatient.id) ||
+        (patient.name != currentPatient.name) ||
+        (patient.surname != currentPatient.surname) ||
+        (patient.date_of_birth != currentPatient.date_of_birth) ||
+        (patient.gender != currentPatient.gender) ||
+        (patient.address != currentPatient.address) ||
+        (patient.city != currentPatient.city);
   }
 
   void setInitialState() {
