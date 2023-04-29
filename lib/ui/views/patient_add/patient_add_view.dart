@@ -1,4 +1,5 @@
 import 'package:care_mate/data/providers/patient_add_provider.dart';
+import 'package:care_mate/ui/widgets/custom_dropdown_button_form_field.dart';
 import 'package:care_mate/ui/widgets/custom_text_form_field.dart';
 import 'package:care_mate/ui/widgets/custom_text_form_field_date_picker.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +24,12 @@ class _PatientAddViewState extends ConsumerState<PatientAddView> {
   @override
   Widget build(BuildContext context) {
     var provider = ref.watch(patientAddProvider);
+    print(provider.gender);
 
     ref.listen(patientAddProvider, (previous, next) {
       if (next.appState == AppState.success &&
           previous?.appState == AppState.loading) {
         ref.read(patientAddProvider.notifier).setInitialState();
-        //ref.read(navigationProvider.notifier).state = AppRoutes.home;
         ref.read(patientAddProvider.notifier).clearAllFields();
         GoRouter.of(context).go(AppRoutes.home);
       } else if (next.appState == AppState.error &&
@@ -92,12 +93,11 @@ class _PatientAddViewState extends ConsumerState<PatientAddView> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: CustomTextFormField(
-                          labelText: "CHANGE TO DropdownButtonFormField",
+                        child: CustomDropdownButtonFormField(
                           onChanged: (value) {
                             ref
                                 .read(patientAddProvider.notifier)
-                                .setGender(value);
+                                .setGender(value!);
                           },
                         ),
                       ),

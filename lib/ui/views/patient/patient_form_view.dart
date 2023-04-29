@@ -1,4 +1,5 @@
 import 'package:care_mate/data/providers/tabs_provider.dart';
+import 'package:care_mate/ui/widgets/custom_dropdown_button_form_field.dart';
 import 'package:care_mate/ui/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -95,8 +96,7 @@ class _PatientFormViewState extends ConsumerState<PatientFormView> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: CustomTextFormField(
-                        labelText: "CHANGE TO DropdownButtonFormField",
+                      child: CustomDropdownButtonFormField(
                         initialValue: provider.gender,
                       ),
                     ),

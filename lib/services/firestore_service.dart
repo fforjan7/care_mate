@@ -181,6 +181,7 @@ class FirestoreService {
           _firebaseFireStore.collection('rooms');
       return roomsCollectionRef
           .where('floor_id', isEqualTo: floor.id)
+          .orderBy('name')
           .snapshots()
           .map((event) => event.docs
               .map((e) => Room.fromJson(e.data() as Map<String, dynamic>))
@@ -196,6 +197,7 @@ class FirestoreService {
           _firebaseFireStore.collection('beds');
       return roomsCollectionRef
           .where('room_id', isEqualTo: room.id)
+          .orderBy('name')
           .snapshots()
           .map((event) => event.docs
               .map((e) => Bed.fromJson(e.data() as Map<String, dynamic>))
