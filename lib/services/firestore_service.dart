@@ -83,6 +83,24 @@ class FirestoreService {
     }
   }
 
+  Future<void> addBloodPressureMeasurement({required Patient patient}) async {
+    try {
+      final CollectionReference patientsCollectionRef =
+          _firebaseFireStore.collection('patients');
+      final DocumentReference patientDocRef =
+          patientsCollectionRef.doc(patient.id);
+
+      final Map<String, dynamic> bloodPressuresMap = {
+        'blood_pressures':
+            patient.blood_pressures.map((t) => t.toJson()).toList()
+      };
+
+      await patientDocRef.update(bloodPressuresMap);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<void> addFloor({
     required Floor floor,
   }) async {

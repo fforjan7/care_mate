@@ -15,7 +15,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
-import 'common/enums/constants/routes.dart';
+import 'common/constants/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../common/enums/constants/routes.dart';
+import '../../../common/constants/routes.dart';
 import '../../../data/providers/repositories/firestore_repository_provider.dart';
 import '../../../data/providers/user_provider.dart';
 import '../../widgets/custom_Popup.dart';

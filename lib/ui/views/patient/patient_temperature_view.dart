@@ -40,15 +40,41 @@ class PatientTemperaturesView extends ConsumerWidget {
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: ListView.separated(
-        itemCount: provider.temperatures.length,
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(provider.temperatures[index].measurement_value),
-          );
-        },
-      ),
+      body: provider.temperatures.isEmpty
+          ? const Center(child: Text("No current measurements"))
+          : ListView.separated(
+              itemCount: provider.temperatures.length,
+              separatorBuilder: (BuildContext context, int index) =>
+                  const Divider(),
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  leading: Icon(Icons.thermostat, color: Colors.red[300]),
+                  title: Column(
+                    children: [
+                      const Text("Temperature value: "),
+                      Text(
+                        provider.temperatures[index].measurement_value,
+                        style: TextStyle(
+                          color: Colors.blue[400],
+                        ),
+                      ),
+                    ],
+                  ),
+                  trailing: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("Measurement time:"),
+                      Text(
+                        provider.temperatures[index].measurement_time,
+                        style: TextStyle(
+                          color: Colors.blue[400],
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:care_mate/common/enums/constants/routes.dart';
+import 'package:care_mate/common/constants/routes.dart';
 import 'package:care_mate/data/models/patient.dart';
 import 'package:care_mate/data/providers/initial_patient_provider.dart';
 import 'package:care_mate/data/providers/patient_search_provider.dart';
@@ -91,7 +91,31 @@ class _PatientSearchViewState extends ConsumerState<PatientSearchView> {
                     separatorBuilder: (BuildContext context, int index) =>
                         const Divider(),
                     itemBuilder: (BuildContext context, int index) {
-                      return GestureDetector(
+                      return ListTile(
+                        title: Text(
+                          "${filteredPatients[index].surname} ${filteredPatients[index].name}",
+                        ),
+                        subtitle: Text(
+                          filteredPatients[index].date_of_birth,
+                        ),
+                        trailing: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              filteredPatients[index].city,
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                              ),
+                            ),
+                            Text(
+                              filteredPatients[index].address,
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                              ),
+                            ),
+                          ],
+                        ),
                         onTap: () {
                           ref
                               .read(tabsProvider.notifier)
@@ -100,25 +124,6 @@ class _PatientSearchViewState extends ConsumerState<PatientSearchView> {
                               filteredPatients[index];
                           GoRouter.of(context).push(AppRoutes.patientTabs);
                         },
-                        child: ListTile(
-                          title: Text(
-                              "${filteredPatients[index].surname} ${filteredPatients[index].name}"),
-                          subtitle: Text(filteredPatients[index].date_of_birth),
-                          trailing: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                filteredPatients[index].city,
-                                style: TextStyle(color: Colors.grey[600]),
-                              ),
-                              Text(
-                                filteredPatients[index].address,
-                                style: TextStyle(color: Colors.grey[600]),
-                              ),
-                            ],
-                          ),
-                        ),
                       );
                     },
                   );

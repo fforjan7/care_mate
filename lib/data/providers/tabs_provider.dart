@@ -30,6 +30,18 @@ class TabsNotifier extends StateNotifier<TabsState> {
     state = state.copyWith(temperatureMeasurementTime: time);
   }
 
+  void setSystolicValue(String value) {
+    state = state.copyWith(systolicValue: value);
+  }
+
+  void setDiastlicValue(String value) {
+    state = state.copyWith(diastolicValue: value);
+  }
+
+  void setBloodPressureMeasurementTime(String time) {
+    state = state.copyWith(bloodPressureMeasurementTime: time);
+  }
+
   void setInitialPatientData(Patient patient) {
     state = state.copyWith(
       address: patient.address,
@@ -61,7 +73,6 @@ class TabsNotifier extends StateNotifier<TabsState> {
   }
 
   bool isPatientDataChanged({required Patient patient}) {
-    print(patient != getCurrentPatientData());
     return patient != getCurrentPatientData();
   }
 
@@ -102,8 +113,30 @@ class TabsNotifier extends StateNotifier<TabsState> {
           .read(firestoreRepositoryProvider)
           .addTemperatureMeasurement(patient: getCurrentPatientData());
     } catch (e) {
-      print("IMAS ERRPR");
-      print(e.toString());
+      state = state.copyWith(appState: AppState.error, error: e.toString());
+    }
+    state = state.copyWith(appState: AppState.success);
+    return;
+  }
+
+  Future<void> addBloodPressureMeasurement() async {
+    state = state.copyWith(appState: AppState.loading);
+    try {
+      BloodPressure bloodPressure = BloodPressure(
+        diastolic: state.diastolicValue,
+        systolic: state.systolicValue,
+        measurement_time: state.bloodPressureMeasurementTime,
+      );
+
+      List<BloodPressure> updatedBloodPressures =
+          List<BloodPressure>.from(state.bloodPressures)..add(bloodPressure);
+
+      state = state.copyWith(bloodPressures: updatedBloodPressures);
+
+      await ref
+          .read(firestoreRepositoryProvider)
+          .addBloodPressureMeasurement(patient: getCurrentPatientData());
+    } catch (e) {
       state = state.copyWith(appState: AppState.error, error: e.toString());
     }
     state = state.copyWith(appState: AppState.success);

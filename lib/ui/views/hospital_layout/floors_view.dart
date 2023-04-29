@@ -1,4 +1,4 @@
-import 'package:care_mate/common/enums/constants/routes.dart';
+import 'package:care_mate/common/constants/routes.dart';
 import 'package:care_mate/data/models/floor.dart';
 import 'package:care_mate/data/providers/floors_provider.dart';
 import 'package:care_mate/data/providers/user_provider.dart';
