@@ -1,6 +1,7 @@
 import 'package:care_mate/data/models/state/tabs_state.dart';
 import 'package:care_mate/data/providers/repositories/firestore_repository_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../../common/enums/state_enum.dart';
 import '../models/patient.dart';
@@ -107,6 +108,14 @@ class TabsNotifier extends StateNotifier<TabsState> {
       List<Temperature> updatedTemperatures =
           List<Temperature>.from(state.temperatures)..add(temperature);
 
+      updatedTemperatures.sort((a, b) {
+        DateTime time1 =
+            DateFormat('dd/MM/yyyy HH:mm').parse(a.measurement_time);
+        DateTime time2 =
+            DateFormat('dd/MM/yyyy HH:mm').parse(b.measurement_time);
+        return time1.compareTo(time2);
+      });
+
       state = state.copyWith(temperatures: updatedTemperatures);
 
       await ref
@@ -130,6 +139,14 @@ class TabsNotifier extends StateNotifier<TabsState> {
 
       List<BloodPressure> updatedBloodPressures =
           List<BloodPressure>.from(state.bloodPressures)..add(bloodPressure);
+
+      updatedBloodPressures.sort((a, b) {
+        DateTime time1 =
+            DateFormat('dd/MM/yyyy HH:mm').parse(a.measurement_time);
+        DateTime time2 =
+            DateFormat('dd/MM/yyyy HH:mm').parse(b.measurement_time);
+        return time1.compareTo(time2);
+      });
 
       state = state.copyWith(bloodPressures: updatedBloodPressures);
 
