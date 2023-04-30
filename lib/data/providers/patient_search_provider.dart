@@ -1,7 +1,9 @@
 import 'package:care_mate/common/enums/state_enum.dart';
 import 'package:care_mate/data/models/state/patient_search_state.dart';
+import 'package:care_mate/data/providers/repositories/firestore_repository_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../models/bed.dart';
 import '../models/patient.dart';
 
 class PatientSearchNotifier extends StateNotifier<PatientSearchState> {
@@ -27,6 +29,22 @@ class PatientSearchNotifier extends StateNotifier<PatientSearchState> {
             patient.name.toLowerCase().contains(lowerCasedSearchInput) ||
             patient.surname.toLowerCase().contains(lowerCasedSearchInput))
         .toList();
+  }
+
+  Future<void> connectPatientToBed({
+    required Bed bed,
+    required Patient patient,
+  }) async {
+    state = state.copyWith(appState: AppState.loading);
+    try {
+      Bed updatedBed = bed.copyWith(patientId: patient.id);
+
+      await ref.read(firestoreRepositoryProvider).updateBed(bed: updatedBed);
+    } catch (e) {
+      state = state.copyWith(appState: AppState.error, error: e.toString());
+    }
+    state = state.copyWith(appState: AppState.success);
+    return;
   }
 }
 

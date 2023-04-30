@@ -1,6 +1,7 @@
 import 'package:care_mate/common/constants/routes.dart';
 import 'package:care_mate/data/models/patient.dart';
 import 'package:care_mate/data/providers/initial_patient_provider.dart';
+import 'package:care_mate/data/providers/nfc_provider.dart';
 import 'package:care_mate/data/providers/patient_search_provider.dart';
 import 'package:care_mate/data/providers/repositories/firestore_repository_provider.dart';
 import 'package:care_mate/data/providers/tabs_provider.dart';
@@ -25,9 +26,24 @@ class _PatientSearchViewState extends ConsumerState<PatientSearchView> {
   @override
   Widget build(BuildContext context) {
     var searchProvider = ref.watch(patientSearchProvider);
+    var selectedBed = ref.read(nfcProvider).bed;
+
     ref.listen(patientSearchProvider, (previous, next) {
       if (next.appState == AppState.success &&
           previous?.appState == AppState.loading) {
+        WidgetsBinding.instance.addPostFrameCallback(
+          (timeStamp) {
+            showAppSnackBar(
+                context: context,
+                text: "Patient successfully added to bed",
+                closedCallback: (value) {
+                  if (mounted) {
+                    ref.read(patientSearchProvider.notifier).setInitialState();
+                  }
+                });
+          },
+        );
+        ref.read(patientSearchProvider.notifier).setInitialState();
       } else if (next.appState == AppState.error &&
           previous?.appState == AppState.loading) {
         WidgetsBinding.instance.addPostFrameCallback(
@@ -115,12 +131,22 @@ class _PatientSearchViewState extends ConsumerState<PatientSearchView> {
                           ],
                         ),
                         onTap: () {
+                          //initialize patient data
                           ref
                               .read(tabsProvider.notifier)
                               .setInitialPatientData(filteredPatients[index]);
                           ref.read(initialPatientProvider.notifier).state =
                               filteredPatients[index];
-                          GoRouter.of(context).push(AppRoutes.patientTabs);
+                          if (selectedBed.id != '') {
+                            ref
+                                .read(patientSearchProvider.notifier)
+                                .connectPatientToBed(
+                                    bed: selectedBed,
+                                    patient: filteredPatients[index]);
+                            GoRouter.of(context).go(AppRoutes.patientTabs);
+                          } else {
+                            GoRouter.of(context).push(AppRoutes.patientTabs);
+                          }
                         },
                       );
                     },

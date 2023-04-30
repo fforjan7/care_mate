@@ -12,7 +12,7 @@ class NfcNotifier extends StateNotifier<NfcState> {
   final Ref ref;
 
   void setId(String id) {
-    state = state.copyWith(id: id);
+    state = state.copyWith(nfcId: id);
   }
 
   void setInitialState() {
@@ -25,11 +25,14 @@ class NfcNotifier extends StateNotifier<NfcState> {
     try {
       bed = await ref
           .read(firestoreRepositoryProvider)
-          .getBedByNfcId(nfcId: state.id);
+          .getBedByNfcId(nfcId: state.nfcId);
+      if (bed != null) {
+        state = state.copyWith(bed: bed);
+      }
     } catch (e) {
       state = state.copyWith(appState: AppState.error, error: e.toString());
     }
-    state = state.copyWith(appState: AppState.success);
+    state = state.copyWith(appState: AppState.initial);
     return bed;
   }
 
@@ -40,6 +43,9 @@ class NfcNotifier extends StateNotifier<NfcState> {
       patient = await ref
           .read(firestoreRepositoryProvider)
           .getPatientByBed(patientId: bed.patientId);
+      if (patient != null) {
+        state = state.copyWith(patient: patient);
+      }
     } catch (e) {
       state = state.copyWith(appState: AppState.error, error: e.toString());
     }

@@ -16,7 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$NfcState {
-  String get id => throw _privateConstructorUsedError;
+  String get nfcId => throw _privateConstructorUsedError;
+  Bed get bed => throw _privateConstructorUsedError;
+  Patient get patient => throw _privateConstructorUsedError;
   AppState get appState => throw _privateConstructorUsedError;
   String get error => throw _privateConstructorUsedError;
 
@@ -30,7 +32,15 @@ abstract class $NfcStateCopyWith<$Res> {
   factory $NfcStateCopyWith(NfcState value, $Res Function(NfcState) then) =
       _$NfcStateCopyWithImpl<$Res, NfcState>;
   @useResult
-  $Res call({String id, AppState appState, String error});
+  $Res call(
+      {String nfcId,
+      Bed bed,
+      Patient patient,
+      AppState appState,
+      String error});
+
+  $BedCopyWith<$Res> get bed;
+  $PatientCopyWith<$Res> get patient;
 }
 
 /// @nodoc
@@ -46,15 +56,25 @@ class _$NfcStateCopyWithImpl<$Res, $Val extends NfcState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? nfcId = null,
+    Object? bed = null,
+    Object? patient = null,
     Object? appState = null,
     Object? error = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      nfcId: null == nfcId
+          ? _value.nfcId
+          : nfcId // ignore: cast_nullable_to_non_nullable
               as String,
+      bed: null == bed
+          ? _value.bed
+          : bed // ignore: cast_nullable_to_non_nullable
+              as Bed,
+      patient: null == patient
+          ? _value.patient
+          : patient // ignore: cast_nullable_to_non_nullable
+              as Patient,
       appState: null == appState
           ? _value.appState
           : appState // ignore: cast_nullable_to_non_nullable
@@ -65,6 +85,22 @@ class _$NfcStateCopyWithImpl<$Res, $Val extends NfcState>
               as String,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BedCopyWith<$Res> get bed {
+    return $BedCopyWith<$Res>(_value.bed, (value) {
+      return _then(_value.copyWith(bed: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PatientCopyWith<$Res> get patient {
+    return $PatientCopyWith<$Res>(_value.patient, (value) {
+      return _then(_value.copyWith(patient: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -74,7 +110,17 @@ abstract class _$$_NfcStateCopyWith<$Res> implements $NfcStateCopyWith<$Res> {
       __$$_NfcStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, AppState appState, String error});
+  $Res call(
+      {String nfcId,
+      Bed bed,
+      Patient patient,
+      AppState appState,
+      String error});
+
+  @override
+  $BedCopyWith<$Res> get bed;
+  @override
+  $PatientCopyWith<$Res> get patient;
 }
 
 /// @nodoc
@@ -88,15 +134,25 @@ class __$$_NfcStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? nfcId = null,
+    Object? bed = null,
+    Object? patient = null,
     Object? appState = null,
     Object? error = null,
   }) {
     return _then(_$_NfcState(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      nfcId: null == nfcId
+          ? _value.nfcId
+          : nfcId // ignore: cast_nullable_to_non_nullable
               as String,
+      bed: null == bed
+          ? _value.bed
+          : bed // ignore: cast_nullable_to_non_nullable
+              as Bed,
+      patient: null == patient
+          ? _value.patient
+          : patient // ignore: cast_nullable_to_non_nullable
+              as Patient,
       appState: null == appState
           ? _value.appState
           : appState // ignore: cast_nullable_to_non_nullable
@@ -113,11 +169,21 @@ class __$$_NfcStateCopyWithImpl<$Res>
 
 class _$_NfcState implements _NfcState {
   const _$_NfcState(
-      {this.id = "", this.appState = AppState.initial, this.error = ""});
+      {this.nfcId = "",
+      this.bed = const Bed(),
+      this.patient = const Patient(),
+      this.appState = AppState.initial,
+      this.error = ""});
 
   @override
   @JsonKey()
-  final String id;
+  final String nfcId;
+  @override
+  @JsonKey()
+  final Bed bed;
+  @override
+  @JsonKey()
+  final Patient patient;
   @override
   @JsonKey()
   final AppState appState;
@@ -127,7 +193,7 @@ class _$_NfcState implements _NfcState {
 
   @override
   String toString() {
-    return 'NfcState(id: $id, appState: $appState, error: $error)';
+    return 'NfcState(nfcId: $nfcId, bed: $bed, patient: $patient, appState: $appState, error: $error)';
   }
 
   @override
@@ -135,14 +201,17 @@ class _$_NfcState implements _NfcState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NfcState &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.nfcId, nfcId) || other.nfcId == nfcId) &&
+            (identical(other.bed, bed) || other.bed == bed) &&
+            (identical(other.patient, patient) || other.patient == patient) &&
             (identical(other.appState, appState) ||
                 other.appState == appState) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, appState, error);
+  int get hashCode =>
+      Object.hash(runtimeType, nfcId, bed, patient, appState, error);
 
   @JsonKey(ignore: true)
   @override
@@ -153,12 +222,18 @@ class _$_NfcState implements _NfcState {
 
 abstract class _NfcState implements NfcState {
   const factory _NfcState(
-      {final String id,
+      {final String nfcId,
+      final Bed bed,
+      final Patient patient,
       final AppState appState,
       final String error}) = _$_NfcState;
 
   @override
-  String get id;
+  String get nfcId;
+  @override
+  Bed get bed;
+  @override
+  Patient get patient;
   @override
   AppState get appState;
   @override

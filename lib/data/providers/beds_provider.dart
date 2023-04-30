@@ -34,6 +34,22 @@ class BedsNotifier extends StateNotifier<BedsState> {
     state = state.copyWith(appState: AppState.success);
     return;
   }
+
+  Future<void> connectNfcToBed({
+    required Bed bed,
+    required String nfcId,
+  }) async {
+    state = state.copyWith(appState: AppState.loading);
+    try {
+      await ref
+          .read(firestoreRepositoryProvider)
+          .updateBed(bed: bed.copyWith(nfcId: nfcId));
+    } catch (e) {
+      state = state.copyWith(appState: AppState.error, error: e.toString());
+    }
+    state = state.copyWith(appState: AppState.success);
+    return;
+  }
 }
 
 final bedsProvider =

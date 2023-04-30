@@ -24,7 +24,6 @@ class _PatientAddViewState extends ConsumerState<PatientAddView> {
   @override
   Widget build(BuildContext context) {
     var provider = ref.watch(patientAddProvider);
-    print(provider.gender);
 
     ref.listen(patientAddProvider, (previous, next) {
       if (next.appState == AppState.success &&

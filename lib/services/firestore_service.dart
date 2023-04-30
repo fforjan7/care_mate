@@ -59,7 +59,7 @@ class FirestoreService {
           _firebaseFireStore.collection('patients');
       final DocumentReference patientDocRef =
           patientsCollectionRef.doc(patient.id);
-      print(patient.temperatures.first.toJson());
+
       await patientDocRef.update(patient.toJson());
     } catch (e) {
       rethrow;
