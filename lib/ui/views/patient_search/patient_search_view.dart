@@ -10,6 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../common/enums/state_enum.dart';
+import '../../../data/models/bed.dart';
 import '../../../utils/app_snackbar.dart';
 import '../../widgets/custom_loading_indicator.dart';
 
@@ -22,11 +23,23 @@ class PatientSearchView extends ConsumerStatefulWidget {
 
 class _PatientSearchViewState extends ConsumerState<PatientSearchView> {
   final _focusNode = FocusNode();
+  List<Bed> beds = [];
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    WidgetsBinding.instance.scheduleFrameCallback((timeStamp) async {
+      beds = await ref.read(patientSearchProvider.notifier).getBeds();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     var searchProvider = ref.watch(patientSearchProvider);
     var selectedBed = ref.read(nfcProvider).bed;
+
+    print(selectedBed.id);
 
     ref.listen(patientSearchProvider, (previous, next) {
       if (next.appState == AppState.success &&
@@ -98,6 +111,10 @@ class _PatientSearchViewState extends ConsumerState<PatientSearchView> {
                         const Divider(),
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
+                        enabled: selectedBed.id == ''
+                            ? true
+                            : !beds.any((bed) =>
+                                bed.patientId == filteredPatients[index].id),
                         title: Text(
                           "${filteredPatients[index].surname} ${filteredPatients[index].name}",
                         ),

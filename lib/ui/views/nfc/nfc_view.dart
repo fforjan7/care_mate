@@ -36,7 +36,6 @@ class _DiscoveryViewState extends ConsumerState<NfcView> {
     try {
       NFCTag tag = await FlutterNfcKit.poll(androidPlatformSound: true);
       ref.read(nfcProvider.notifier).setId(tag.id);
-      await FlutterNfcKit.finish();
     } catch (e) {}
   }
 
@@ -52,6 +51,7 @@ class _DiscoveryViewState extends ConsumerState<NfcView> {
     if (bed != null) {
       patient = await ref.read(nfcProvider.notifier).getPatientByBed(bed: bed!);
     }
+    await FlutterNfcKit.finish();
   }
 
   @override

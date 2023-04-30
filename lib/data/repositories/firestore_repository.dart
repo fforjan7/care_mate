@@ -64,6 +64,10 @@ class FirestoreRepository {
     return _firestoreService.streamBeds(room: room);
   }
 
+  Future<List<Bed>> getBeds() async {
+    return _firestoreService.getBeds();
+  }
+
   Future<Bed?> getBedByNfcId({required String nfcId}) async {
     return _firestoreService.getBedByNfcId(nfcId: nfcId);
   }

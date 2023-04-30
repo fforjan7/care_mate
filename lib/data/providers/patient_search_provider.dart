@@ -31,6 +31,18 @@ class PatientSearchNotifier extends StateNotifier<PatientSearchState> {
         .toList();
   }
 
+  Future<List<Bed>> getBeds() async {
+    List<Bed> beds = [];
+    state = state.copyWith(appState: AppState.loading);
+    try {
+      beds = await ref.read(firestoreRepositoryProvider).getBeds();
+    } catch (e) {
+      state = state.copyWith(appState: AppState.error, error: e.toString());
+    }
+    state = state.copyWith(appState: AppState.initial);
+    return beds;
+  }
+
   Future<void> connectPatientToBed({
     required Bed bed,
     required Patient patient,

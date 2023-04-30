@@ -220,31 +220,50 @@ class FirestoreService {
     }
   }
 
-  Future<Bed?> getBedByNfcId({required String nfcId}) async {
-    final bedSnapshot = await FirebaseFirestore.instance
-        .collection('beds')
-        .where('nfc_id', isEqualTo: nfcId)
-        .limit(1)
-        .get();
-
-    if (bedSnapshot.size == 0) {
-      return null;
+  Future<List<Bed>> getBeds() async {
+    try {
+      final querySnapshot = await _firebaseFireStore.collection('beds').get();
+      final bedList =
+          querySnapshot.docs.map((doc) => Bed.fromJson(doc.data())).toList();
+      return bedList;
+    } catch (e) {
+      rethrow;
     }
-    final bed = Bed.fromJson(bedSnapshot.docs.first.data());
-    return bed;
+  }
+
+  Future<Bed?> getBedByNfcId({required String nfcId}) async {
+    try {
+      final bedSnapshot = await FirebaseFirestore.instance
+          .collection('beds')
+          .where('nfc_id', isEqualTo: nfcId)
+          .limit(1)
+          .get();
+
+      if (bedSnapshot.size == 0) {
+        return null;
+      }
+      final bed = Bed.fromJson(bedSnapshot.docs.first.data());
+      return bed;
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<Patient?> getPatientByBed({required String patientId}) async {
-    final patientSnapshot = await FirebaseFirestore.instance
-        .collection('patients')
-        .where('id', isEqualTo: patientId)
-        .limit(1)
-        .get();
+    try {
+      final patientSnapshot = await FirebaseFirestore.instance
+          .collection('patients')
+          .where('id', isEqualTo: patientId)
+          .limit(1)
+          .get();
 
-    if (patientSnapshot.size == 0) {
-      return null;
+      if (patientSnapshot.size == 0) {
+        return null;
+      }
+      final patient = Patient.fromJson(patientSnapshot.docs.first.data());
+      return patient;
+    } catch (e) {
+      rethrow;
     }
-    final patient = Patient.fromJson(patientSnapshot.docs.first.data());
-    return patient;
   }
 }
