@@ -32,31 +32,25 @@ class CustomTextFormField extends StatelessWidget {
       validator: (value) {
         return value!.isEmpty ? "This field cannot be empty" : null;
       },
-      inputFormatters: [CapitalizeWordsTextInputFormatter()],
+      inputFormatters: [CapitalizeFirstWordTextInputFormatter()],
     );
   }
 }
 
-class CapitalizeWordsTextInputFormatter extends TextInputFormatter {
+class CapitalizeFirstWordTextInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
-    final List<String> words = newValue.text.split(' ');
-    final StringBuffer formatted = StringBuffer();
-    for (int i = 0; i < words.length; i++) {
-      String word = words[i];
-      if (word.isNotEmpty) {
-        formatted.write(word[0].toUpperCase());
-        formatted.write(word.substring(1).toLowerCase());
-        if (i < words.length - 1) {
-          formatted.write(' ');
-        }
-      }
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    TextEditingValue resultValue = const TextEditingValue();
+    if (newValue.text.isNotEmpty) {
+      resultValue = newValue.copyWith(
+        text: newValue.text[0].toUpperCase() + newValue.text.substring(1),
+      );
+    } else {
+      resultValue = newValue;
     }
-    return TextEditingValue(
-      text: formatted.toString(),
-      selection: newValue.selection,
-      composing: TextRange.empty,
-    );
+    return resultValue;
   }
 }

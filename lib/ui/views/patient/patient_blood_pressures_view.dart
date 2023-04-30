@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../common/enums/state_enum.dart';
 import '../../../data/providers/tabs_provider.dart';
+import '../../../utils/app_snackbar.dart';
 import '../../widgets/custom_Popup.dart';
 
 class PatientBloodPressuresView extends ConsumerWidget {
@@ -10,6 +12,27 @@ class PatientBloodPressuresView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var provider = ref.watch(tabsProvider);
+
+    ref.listen(tabsProvider, (previous, next) {
+      if (next.appState == AppState.success &&
+          previous?.appState == AppState.loading) {
+        ref.read(tabsProvider.notifier).setInitialState();
+        showAppSnackBar(
+            context: context,
+            text: "Blood pressure measurement successfully added",
+            closedCallback: (value) {
+              ref.read(tabsProvider.notifier).setInitialState();
+            });
+      } else if (next.appState == AppState.error &&
+          previous?.appState == AppState.loading) {
+        showAppSnackBar(
+            context: context,
+            text: next.error,
+            closedCallback: (value) {
+              ref.read(tabsProvider.notifier).setInitialState();
+            });
+      }
+    });
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(

@@ -31,7 +31,7 @@ class BedsNotifier extends StateNotifier<BedsState> {
     } catch (e) {
       state = state.copyWith(appState: AppState.error, error: e.toString());
     }
-    state = state.copyWith(appState: AppState.success);
+    state = state.copyWith(appState: AppState.initial);
     return;
   }
 

@@ -31,33 +31,25 @@ class _PatientSearchViewState extends ConsumerState<PatientSearchView> {
     ref.listen(patientSearchProvider, (previous, next) {
       if (next.appState == AppState.success &&
           previous?.appState == AppState.loading) {
-        WidgetsBinding.instance.addPostFrameCallback(
-          (timeStamp) {
-            showAppSnackBar(
-                context: context,
-                text: "Patient successfully added to bed",
-                closedCallback: (value) {
-                  if (mounted) {
-                    ref.read(patientSearchProvider.notifier).setInitialState();
-                  }
-                });
-          },
-        );
+        showAppSnackBar(
+            context: context,
+            text: "Patient successfully added to bed",
+            closedCallback: (value) {
+              if (mounted) {
+                ref.read(patientSearchProvider.notifier).setInitialState();
+              }
+            });
         ref.read(patientSearchProvider.notifier).setInitialState();
       } else if (next.appState == AppState.error &&
           previous?.appState == AppState.loading) {
-        WidgetsBinding.instance.addPostFrameCallback(
-          (timeStamp) {
-            showAppSnackBar(
-                context: context,
-                text: next.error,
-                closedCallback: (value) {
-                  if (mounted) {
-                    ref.read(patientSearchProvider.notifier).setInitialState();
-                  }
-                });
-          },
-        );
+        showAppSnackBar(
+            context: context,
+            text: next.error,
+            closedCallback: (value) {
+              if (mounted) {
+                ref.read(patientSearchProvider.notifier).setInitialState();
+              }
+            });
       }
     });
 
@@ -143,7 +135,10 @@ class _PatientSearchViewState extends ConsumerState<PatientSearchView> {
                                 .connectPatientToBed(
                                     bed: selectedBed,
                                     patient: filteredPatients[index]);
-                            GoRouter.of(context).go(AppRoutes.patientTabs);
+                            while (context.canPop()) {
+                              context.pop();
+                            }
+                            GoRouter.of(context).push(AppRoutes.patientTabs);
                           } else {
                             GoRouter.of(context).push(AppRoutes.patientTabs);
                           }

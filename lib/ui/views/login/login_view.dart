@@ -48,18 +48,14 @@ class _LoginViewState extends ConsumerState<LoginView> {
         GoRouter.of(context).go(AppRoutes.home);
       } else if (next.appState == AppState.error &&
           previous?.appState == AppState.loading) {
-        WidgetsBinding.instance.addPostFrameCallback(
-          (timeStamp) {
-            showAppSnackBar(
-                context: context,
-                text: next.error,
-                closedCallback: (value) {
-                  if (mounted) {
-                    ref.read(loginProvider.notifier).setInitialState();
-                  }
-                });
-          },
-        );
+        showAppSnackBar(
+            context: context,
+            text: next.error,
+            closedCallback: (value) {
+              if (mounted) {
+                ref.read(loginProvider.notifier).setInitialState();
+              }
+            });
       }
     });
     return Scaffold(

@@ -28,23 +28,27 @@ class _PatientAddViewState extends ConsumerState<PatientAddView> {
     ref.listen(patientAddProvider, (previous, next) {
       if (next.appState == AppState.success &&
           previous?.appState == AppState.loading) {
+        showAppSnackBar(
+            context: context,
+            text: "Patient successfully added",
+            closedCallback: (value) {
+              if (mounted) {
+                ref.read(patientAddProvider.notifier).setInitialState();
+              }
+            });
         ref.read(patientAddProvider.notifier).setInitialState();
         ref.read(patientAddProvider.notifier).clearAllFields();
         GoRouter.of(context).go(AppRoutes.home);
       } else if (next.appState == AppState.error &&
           previous?.appState == AppState.loading) {
-        WidgetsBinding.instance.addPostFrameCallback(
-          (timeStamp) {
-            showAppSnackBar(
-                context: context,
-                text: next.error,
-                closedCallback: (value) {
-                  if (mounted) {
-                    ref.read(patientAddProvider.notifier).setInitialState();
-                  }
-                });
-          },
-        );
+        showAppSnackBar(
+            context: context,
+            text: next.error,
+            closedCallback: (value) {
+              if (mounted) {
+                ref.read(patientAddProvider.notifier).setInitialState();
+              }
+            });
       }
     });
     return Scaffold(
