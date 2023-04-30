@@ -29,29 +29,27 @@ class _DiscoveryViewState extends ConsumerState<NfcView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _getPatient();
+    _scanNfc();
   }
 
-  Future<void> _getNFCTag() async {
+  Future<void> _scanNfc() async {
     try {
+      //get NFC data and set id to state
       NFCTag tag = await FlutterNfcKit.poll(androidPlatformSound: true);
       ref.read(nfcProvider.notifier).setId(tag.id);
-    } catch (e) {}
-  }
-
-  Future<void> _getBed() async {
-    await _getNFCTag();
-    bed = await ref.read(nfcProvider.notifier).getBedByNfcId();
-    ref.read(nfcProvider.notifier).setInitialState();
-  }
-
-  Future<void> _getPatient() async {
-    await _getBed();
-
-    if (bed != null) {
-      patient = await ref.read(nfcProvider.notifier).getPatientByBed(bed: bed!);
+      //get bed if nfc is connected to one
+      bed = await ref.read(nfcProvider.notifier).getBedByNfcId();
+      //get the patient if he is lying in bed
+      if (bed != null) {
+        patient =
+            await ref.read(nfcProvider.notifier).getPatientByBed(bed: bed!);
+      }
+      await FlutterNfcKit.finish();
+    } catch (e) {
+      print(
+        e.toString(),
+      );
     }
-    await FlutterNfcKit.finish();
   }
 
   @override
