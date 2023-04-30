@@ -32,24 +32,33 @@ class _PatientFormViewState extends ConsumerState<PatientFormView> {
       if (next.appState == AppState.success &&
           previous?.appState == AppState.loading) {
         ref.read(tabsProvider.notifier).setInitialState();
-        showAppSnackBar(
-            context: context,
-            text: "Patient successfully updated",
-            closedCallback: (value) {
-              if (mounted) {
-                ref.read(tabsProvider.notifier).setInitialState();
-              }
-            });
+
+        WidgetsBinding.instance.addPostFrameCallback(
+          (timeStamp) {
+            showAppSnackBar(
+                context: context,
+                text: "Patient successfully updated",
+                closedCallback: (value) {
+                  if (mounted) {
+                    ref.read(tabsProvider.notifier).setInitialState();
+                  }
+                });
+          },
+        );
       } else if (next.appState == AppState.error &&
           previous?.appState == AppState.loading) {
-        showAppSnackBar(
-            context: context,
-            text: next.error,
-            closedCallback: (value) {
-              if (mounted) {
-                ref.read(tabsProvider.notifier).setInitialState();
-              }
-            });
+        WidgetsBinding.instance.addPostFrameCallback(
+          (timeStamp) {
+            showAppSnackBar(
+                context: context,
+                text: next.error,
+                closedCallback: (value) {
+                  if (mounted) {
+                    ref.read(tabsProvider.notifier).setInitialState();
+                  }
+                });
+          },
+        );
       }
     });
     return provider.appState == AppState.loading

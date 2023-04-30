@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../../common/enums/state_enum.dart';
+import '../models/bed.dart';
 import '../models/patient.dart';
 import 'initial_patient_provider.dart';
 
@@ -160,6 +161,37 @@ class TabsNotifier extends StateNotifier<TabsState> {
       await ref
           .read(firestoreRepositoryProvider)
           .addBloodPressureMeasurement(patient: getCurrentPatientData());
+    } catch (e) {
+      state = state.copyWith(appState: AppState.error, error: e.toString());
+    }
+    state = state.copyWith(appState: AppState.success);
+    return;
+  }
+
+  Future<Bed?> getPatientsBed() async {
+    List<Bed> beds = [];
+    state = state.copyWith(appState: AppState.loading);
+    try {
+      beds = await ref.read(firestoreRepositoryProvider).getBeds();
+    } catch (e) {
+      state = state.copyWith(appState: AppState.error, error: e.toString());
+    }
+    state = state.copyWith(appState: AppState.initial);
+    for (var bed in beds) {
+      if (bed.patientId == state.id) {
+        return bed;
+      }
+    }
+    return null;
+  }
+
+  Future<void> removePatientFromBed({
+    required Bed bed,
+  }) async {
+    state = state.copyWith(appState: AppState.loading);
+    try {
+      Bed updatedBed = bed.copyWith(patientId: '');
+      await ref.read(firestoreRepositoryProvider).updateBed(bed: updatedBed);
     } catch (e) {
       state = state.copyWith(appState: AppState.error, error: e.toString());
     }
