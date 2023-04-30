@@ -121,7 +121,7 @@ class TabsNotifier extends StateNotifier<TabsState> {
             DateFormat('dd/MM/yyyy HH:mm').parse(a.measurement_time);
         DateTime time2 =
             DateFormat('dd/MM/yyyy HH:mm').parse(b.measurement_time);
-        return time1.compareTo(time2);
+        return time2.compareTo(time1);
       });
 
       state = state.copyWith(temperatures: updatedTemperatures);
@@ -153,7 +153,7 @@ class TabsNotifier extends StateNotifier<TabsState> {
             DateFormat('dd/MM/yyyy HH:mm').parse(a.measurement_time);
         DateTime time2 =
             DateFormat('dd/MM/yyyy HH:mm').parse(b.measurement_time);
-        return time1.compareTo(time2);
+        return time2.compareTo(time1);
       });
 
       state = state.copyWith(bloodPressures: updatedBloodPressures);
