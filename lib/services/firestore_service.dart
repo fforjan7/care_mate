@@ -220,12 +220,25 @@ class FirestoreService {
     }
   }
 
+  Future<List<Patient>> getPatients() async {
+    try {
+      final querySnapshot =
+          await _firebaseFireStore.collection('patients').get();
+      final patients = querySnapshot.docs
+          .map((doc) => Patient.fromJson(doc.data()))
+          .toList();
+      return patients;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<List<Bed>> getBeds() async {
     try {
       final querySnapshot = await _firebaseFireStore.collection('beds').get();
-      final bedList =
+      final beds =
           querySnapshot.docs.map((doc) => Bed.fromJson(doc.data())).toList();
-      return bedList;
+      return beds;
     } catch (e) {
       rethrow;
     }

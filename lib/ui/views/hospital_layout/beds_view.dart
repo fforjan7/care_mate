@@ -8,8 +8,11 @@ import 'package:go_router/go_router.dart';
 
 import '../../../common/constants/routes.dart';
 import '../../../common/enums/state_enum.dart';
+import '../../../data/models/patient.dart';
 import '../../../data/models/room.dart';
+import '../../../data/providers/initial_patient_provider.dart';
 import '../../../data/providers/repositories/firestore_repository_provider.dart';
+import '../../../data/providers/tabs_provider.dart';
 import '../../../utils/app_snackbar.dart';
 import '../../widgets/custom_Popup.dart';
 import '../../widgets/custom_loading_indicator.dart';
@@ -22,6 +25,17 @@ class HospitalBedsView extends ConsumerStatefulWidget {
 }
 
 class _HospitalBedsViewState extends ConsumerState<HospitalBedsView> {
+  List<Patient> patients = [];
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    WidgetsBinding.instance.scheduleFrameCallback((timeStamp) async {
+      patients = await ref.read(bedsProvider.notifier).getPatients();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var isAdmin = ref.read(userProvider).isAdmin;
@@ -108,22 +122,71 @@ class _HospitalBedsViewState extends ConsumerState<HospitalBedsView> {
                     separatorBuilder: (BuildContext context, int index) =>
                         const Divider(),
                     itemBuilder: (BuildContext context, int index) {
-                      return ListTile(
-                        enabled: nfcId == ''
-                            ? true
-                            : beds[index].nfcId == ''
-                                ? true
-                                : false,
-                        title: Text(beds[index].name),
-                        onTap: () {
-                          if (nfcId != '') {
-                            ref.read(bedsProvider.notifier).connectNfcToBed(
-                                  bed: beds[index],
-                                  nfcId: nfcId,
-                                );
-                          }
-                        },
-                      );
+                      Patient currentPatient = patients.firstWhere(
+                          (patient) => patient.id == beds[index].patientId,
+                          orElse: () => const Patient());
+                      return currentPatient.id != ''
+                          ? ListTile(
+                              enabled: nfcId == ''
+                                  ? true
+                                  : beds[index].nfcId == ''
+                                      ? true
+                                      : false,
+                              title: Text(
+                                "${currentPatient.surname} ${currentPatient.name}",
+                              ),
+                              subtitle: Text(
+                                currentPatient.date_of_birth,
+                              ),
+                              trailing: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    currentPatient.city,
+                                    style: TextStyle(
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+                                  Text(
+                                    currentPatient.address,
+                                    style: TextStyle(
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              onTap: () {
+                                //initialize patient data
+                                ref
+                                    .read(tabsProvider.notifier)
+                                    .setInitialPatientData(currentPatient);
+                                ref
+                                    .read(initialPatientProvider.notifier)
+                                    .state = currentPatient;
+
+                                GoRouter.of(context)
+                                    .push(AppRoutes.patientTabs);
+                              },
+                            )
+                          : ListTile(
+                              enabled: nfcId == ''
+                                  ? true
+                                  : beds[index].nfcId == ''
+                                      ? true
+                                      : false,
+                              title: Text(beds[index].name),
+                              onTap: () {
+                                if (nfcId != '') {
+                                  ref
+                                      .read(bedsProvider.notifier)
+                                      .connectNfcToBed(
+                                        bed: beds[index],
+                                        nfcId: nfcId,
+                                      );
+                                }
+                              },
+                            );
                     },
                   );
           } else {

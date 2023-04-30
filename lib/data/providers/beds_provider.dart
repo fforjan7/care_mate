@@ -1,4 +1,5 @@
 import 'package:care_mate/data/models/bed.dart';
+import 'package:care_mate/data/models/patient.dart';
 import 'package:care_mate/data/models/room.dart';
 import 'package:care_mate/data/models/state/beds_state.dart';
 import 'package:care_mate/data/providers/repositories/firestore_repository_provider.dart';
@@ -49,6 +50,18 @@ class BedsNotifier extends StateNotifier<BedsState> {
     }
     state = state.copyWith(appState: AppState.success);
     return;
+  }
+
+  Future<List<Patient>> getPatients() async {
+    List<Patient> patients = [];
+    state = state.copyWith(appState: AppState.loading);
+    try {
+      patients = await ref.read(firestoreRepositoryProvider).getPatients();
+    } catch (e) {
+      state = state.copyWith(appState: AppState.error, error: e.toString());
+    }
+    state = state.copyWith(appState: AppState.initial);
+    return patients;
   }
 }
 

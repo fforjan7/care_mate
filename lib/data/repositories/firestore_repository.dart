@@ -64,15 +64,19 @@ class FirestoreRepository {
     return _firestoreService.streamBeds(room: room);
   }
 
+  Future<List<Patient>> getPatients() async {
+    return await _firestoreService.getPatients();
+  }
+
   Future<List<Bed>> getBeds() async {
-    return _firestoreService.getBeds();
+    return await _firestoreService.getBeds();
   }
 
   Future<Bed?> getBedByNfcId({required String nfcId}) async {
-    return _firestoreService.getBedByNfcId(nfcId: nfcId);
+    return await _firestoreService.getBedByNfcId(nfcId: nfcId);
   }
 
   Future<Patient?> getPatientByBed({required String patientId}) async {
-    return _firestoreService.getPatientByBed(patientId: patientId);
+    return await _firestoreService.getPatientByBed(patientId: patientId);
   }
 }
