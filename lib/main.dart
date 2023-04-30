@@ -35,7 +35,7 @@ class _MyAppState extends ConsumerState<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Flutter Bottom Navigation Demo',
+      title: 'Care Mate',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

@@ -2,7 +2,7 @@
     package="com.example.care_mate">
     <uses-permission android:name="android.permission.NFC" />
    <application
-        android:label="care_mate"
+        android:label="Care Mate"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
