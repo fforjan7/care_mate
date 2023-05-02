@@ -42,9 +42,6 @@ class _LoginViewState extends ConsumerState<LoginView> {
     ref.listen(loginProvider, (previous, next) {
       if (next.appState == AppState.success &&
           previous?.appState == AppState.loading) {
-        ref.read(loginProvider.notifier).setInitialState();
-        ref.read(loginProvider.notifier).clearEmail();
-        ref.read(loginProvider.notifier).clearPassword();
         GoRouter.of(context).go(AppRoutes.home);
       } else if (next.appState == AppState.error &&
           previous?.appState == AppState.loading) {

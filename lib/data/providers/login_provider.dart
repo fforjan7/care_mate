@@ -48,7 +48,13 @@ class LoginNotifier extends StateNotifier<LoginState> {
   }
 
   Future<void> signOut() async {
-    await ref.read(authRepositoryProvider).signOut();
+    state = state.copyWith(appState: AppState.loading);
+    try {
+      await ref.read(authRepositoryProvider).signOut();
+    } catch (e) {
+      state = state.copyWith(appState: AppState.error, error: e.toString());
+    }
+    state = state.copyWith(appState: AppState.success);
   }
 }
 

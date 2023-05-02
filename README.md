@@ -32,4 +32,3 @@ flutter run
 ## Usage
 
 Once installed, Care mate can be used to manage and monitor patient data, with each patient assigned an NFC tag for easy access to their data sheet.
-
