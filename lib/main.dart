@@ -40,6 +40,7 @@ class _MyAppState extends ConsumerState<MyApp> {
         primarySwatch: Colors.blue,
       ),
       routerConfig: _router,
+      debugShowCheckedModeBanner: false,
     );
   }
 
